@@ -1,6 +1,7 @@
 object rolando{
 	var valorBase = 3
 	var fuerzaOscura = 5
+	var habilidadLucha = 1
 	method nivelHechiceria(unHechizo){
 		return ( valorBase * unHechizo.poder() ) + fuerzaOscura
 	}
@@ -8,7 +9,10 @@ object rolando{
 		fuerzaOscura *= 2
 	}
 	method seCreePoderoso(){
-		if 
+		if bf
+	}
+	method habilidadLucha(){
+		return habilidadLucha
 	}
 }
 
@@ -27,3 +31,10 @@ object hechizoBasico{
 		return poder
 	}
 }
+
+object espadaDelDestino{
+	method modificarLucha(){
+		habilidadLucha += 3
+	}
+}
+
