@@ -3,7 +3,7 @@ object rolando{
 	var fuerzaOscura = 5
 	var valorBaseLucha = 1
 	var hechizoPreferido = espectroMalefico
-	var artefactos = []
+	var artefactos = [espadaDelDestino,collarDivino, mascaraOscura]
 	
 	method nivelHechiceria(){
 		return ( valorBaseHechiceria * hechizoPreferido.poder() ) + fuerzaOscura
@@ -89,3 +89,6 @@ object collarDivino{
 	}
 }
 
+object armadura{
+	
+}
