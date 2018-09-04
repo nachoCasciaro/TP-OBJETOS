@@ -14,6 +14,9 @@ object rolando{
 	method valorBaseLucha(){
 		return valorBaseLucha
 	}
+	method modificarValorBaseLucha(nuevoValor){
+		valorBaseLucha = nuevoValor
+	}
 	method cambiarHechizoPreferido(nuevoHechizo){
 		hechizoPreferido = nuevoHechizo
 	}
@@ -21,13 +24,19 @@ object rolando{
 		return fuerzaOscura
 	}
 	method habilidadLucha(){
-		return self.valorBaseLucha() 
+		return self.valorBaseLucha() + self.artefactos().sum({artefacto => artefacto.unidadesDeLucha()})
 	}
 	method artefactos(){
 		return artefactos
 	}
 	method eliminarTodosLosArtefactos(){
-		return self.artefactos.clear()
+		self.artefactos().clear()
+	}
+	method agregarUnArtefacto(unArtefacto){
+		self.artefactos().add(unArtefacto)
+	}
+	method esMasLuchadorQueHechicero(){
+		return self.habilidadLucha() > self.nivelHechiceria()
 	}
 }
 
@@ -47,7 +56,6 @@ object espectroMalefico{
 
 object hechizoBasico{
 	var poder = 10
-	var nombre = "hechizo basico"
 	method esPoderoso() {
 		return false
 	}
@@ -69,8 +77,12 @@ object mascaraOscura{
 }
 
 object collarDivino{
+	var cantidadPerlas = 5
 	method unidadesDeLucha(){
-		return 5
+		return cantidadPerlas
+	}
+	method modificarPerlas(unaCantidadPerlas){
+		cantidadPerlas = unaCantidadPerlas
 	}
 }
 

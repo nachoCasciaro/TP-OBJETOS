@@ -32,7 +32,22 @@ test "ver que el hechizo basico no es poderoso"{
 }
 
 test "eliminar todos los artefactos y el nivel de hechiceria queda en 1"{
-	rolando.artefactos.clear()
+	rolando.artefactos().clear()
 	assert.that(rolando.habilidadLucha() == 1)
 }
+
+test "agregas todos los artefactos y la habilidad de lucha queda en 13"{
+	rolando.agregarUnArtefacto(espadaDelDestino)
+	rolando.agregarUnArtefacto(mascaraOscura)
+	rolando.agregarUnArtefacto(collarDivino)
+	assert.equals(13,rolando.habilidadLucha())
 }
+
+test "cambiar la cantidad de perlas a 3 y la habilidad de lucha queda en 11" {
+	collarDivino.modificarPerlas(3)
+	rolando.agregarUnArtefacto(espadaDelDestino)
+	rolando.agregarUnArtefacto(mascaraOscura)
+	rolando.agregarUnArtefacto(collarDivino)
+	assert.equals(11,rolando.habilidadLucha())
+}
+
