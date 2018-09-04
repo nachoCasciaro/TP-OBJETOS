@@ -32,6 +32,9 @@ object rolando{
 	method eliminarTodosLosArtefactos(){
 		self.artefactos().clear()
 	}
+	method eliminarUnArtefacto(unArtefacto){
+		self.artefactos().remove(unArtefacto)
+	}
 	method agregarUnArtefacto(unArtefacto){
 		self.artefactos().add(unArtefacto)
 	}
