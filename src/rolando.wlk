@@ -1,12 +1,12 @@
 object rolando{
-	var valorBase = 3
+	var valorBaseHechiceria = 3
 	var fuerzaOscura = 5
 	var valorBaseLucha = 1
 	var hechizoPreferido = espectroMalefico
 	var artefactos = []
 	
 	method nivelHechiceria(){
-		return ( valorBase * hechizoPreferido.poder() ) + fuerzaOscura
+		return ( valorBaseHechiceria * hechizoPreferido.poder() ) + fuerzaOscura
 	}
 	method eclipse(){
 		fuerzaOscura *= 2
