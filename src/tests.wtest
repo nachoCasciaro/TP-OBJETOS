@@ -30,4 +30,9 @@ test "cambiar el nombre del espectro malefico y ver que no es poderoso" {
 test "ver que el hechizo basico no es poderoso"{
 	assert.that(hechizoBasico.esPoderoso() == false)
 }
+
+test "eliminar todos los artefactos y el nivel de hechiceria queda en 1"{
+	rolando.artefactos.clear()
+	assert.that(rolando.habilidadLucha() == 1)
+}
 }

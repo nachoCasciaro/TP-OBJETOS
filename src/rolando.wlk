@@ -1,19 +1,33 @@
 object rolando{
 	var valorBase = 3
 	var fuerzaOscura = 5
-	var habilidadLucha = 1
+	var valorBaseLucha = 1
 	var hechizoPreferido = espectroMalefico
+	var artefactos = []
+	
 	method nivelHechiceria(){
 		return ( valorBase * hechizoPreferido.poder() ) + fuerzaOscura
 	}
 	method eclipse(){
 		fuerzaOscura *= 2
 	}
-	method habilidadLucha(){
-		return habilidadLucha
+	method valorBaseLucha(){
+		return valorBaseLucha
 	}
 	method cambiarHechizoPreferido(nuevoHechizo){
 		hechizoPreferido = nuevoHechizo
+	}
+	method fuerzaOscura(){
+		return fuerzaOscura
+	}
+	method habilidadLucha(){
+		return self.valorBaseLucha() 
+	}
+	method artefactos(){
+		return artefactos
+	}
+	method eliminarTodosLosArtefactos(){
+		return self.artefactos.clear()
 	}
 }
 
@@ -44,6 +58,19 @@ object hechizoBasico{
 }
 
 object espadaDelDestino{
-	
+	method unidadesDeLucha(){
+		return 3
+	}
+}
+object mascaraOscura{
+	method unidadesDeLucha(){
+		return 4.max(rolando.fuerzaOscura()/2)
+	}
+}
+
+object collarDivino{
+	method unidadesDeLucha(){
+		return 5
+	}
 }
 
