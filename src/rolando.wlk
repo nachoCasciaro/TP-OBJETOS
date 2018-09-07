@@ -94,5 +94,17 @@ object armadura{
 }
 
 object fuerzaOscura {
-
+  var valor = 5
+  
+  method valor() {
+  return valor
+  }
+  
+  method valor(nuevoValor){
+  valor = nuevoValor
+  }
+  
+  method eclipse(){
+  valor *= 2
+  }
 }
