@@ -92,3 +92,7 @@ object collarDivino{
 object armadura{
 	
 }
+
+object fuerzaOscura {
+
+}
