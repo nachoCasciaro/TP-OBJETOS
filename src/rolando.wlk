@@ -19,7 +19,7 @@ object rolando{
 	}
 
 	method habilidadLucha(){
-		return self.valorBaseLucha() + self.artefactos().sum({artefacto => artefacto.unidadesDeLucha()})
+		return self.valorBaseLucha() + self.artefactos().sum({artefacto => artefacto.unidadesDeLucha( self.nivelHechiceria())})
 	}
 	method artefactos(){
 		return artefactos
@@ -43,6 +43,7 @@ object rolando{
 	method hechizoPreferido(){
 		return hechizoPreferido
 	}
+	
 }
 
 object espectroMalefico{
@@ -97,10 +98,6 @@ object collarDivino{
 	}
 }
 
-object armadura{
-	
-}
-
 object fuerzaOscura {
   var valor = 5
   
@@ -116,3 +113,29 @@ object fuerzaOscura {
   valor *= 2
   }
 }
+
+object armadura {
+	var refuerzo = null
+	
+	method refuerzo (unRefuerzo){
+	refuerzo = unRefuerzo
+	}
+
+
+	method unidadesDeLucha(nivelHechiceria){
+		return 2 + refuerzo.unidadesDeLucha(nivelHechiceria)	
+	}
+}
+
+object cotaDeMalla{
+	method unidadesDeLucha(nivelHechiceria){
+		return 1
+	}
+}
+
+object bendicion{
+	method unidadesDeLucha(nivelHechiceria){
+		return nivelHechiceria
+	}
+}
+
