@@ -166,6 +166,9 @@ object libroHechizos{
 	method poder(){
 		hechizos.sum({ hechizo => hechizo.esPoderoso() })
 	}
+	method agregarHechizo(nuevoHechizo){
+		hechizos.add(nuevoHechizo)
+	}
 	//Si el LibroDeHechizos se incluye a si mismo, al intentar obtener el poder, este no reconoce el mensaje esPoderoso()
 }
 
