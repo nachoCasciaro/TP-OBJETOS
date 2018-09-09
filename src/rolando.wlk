@@ -164,7 +164,7 @@ object espejoFantastico{
 object libroHechizos{
 	var hechizos = []
 	method poder(){
-		hechizos.sum({ hechizo => hechizo.esPoderoso() })
+		return hechizos.filter({ hechizo => hechizo.esPoderoso() }).sum({hechizo => hechizo.poder()})
 	}
 	method agregarHechizo(nuevoHechizo){
 		hechizos.add(nuevoHechizo)
