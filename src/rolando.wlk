@@ -14,7 +14,7 @@ object rolando{
 	method modificarValorBaseLucha(nuevoValor){
 		valorBaseLucha = nuevoValor
 	}
-	method cambiarHechizoPreferido(nuevoHechizo){
+	method hechizoPreferido(nuevoHechizo){
 		hechizoPreferido = nuevoHechizo
 	}
 
@@ -43,7 +43,7 @@ object espectroMalefico{
 	method esPoderoso() {
 		return self.poder() > 15
 	}
-	method cambiarNombre(nombreNuevo){
+	method nombre(nombreNuevo){
 		nombre = nombreNuevo
 	}
 	method poder() {
