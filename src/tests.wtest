@@ -52,7 +52,7 @@ test "cambiar valor base de lucha y la habilidad de lucha queda en 20" {
 
 test "ocurre un eclipse y el valor de lucha de la mascara queda en 5"{
 	fuerzaOscura.eclipse()
-	assert.equals(5,mascaraOscura.unidadesDeLucha(nivelHechiceria, artefactos))
+	assert.equals(5,mascaraOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos() ))
 }
 
 test "eliminar la mascara de los artefactos y la habilidad de lucha queda en 9"{
