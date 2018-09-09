@@ -56,6 +56,9 @@ object espectroMalefico{
 	method poder() {
 		return nombre.size()
 	}
+	method unidadesDeLucha(nivelHechiceria){
+		return self.poder()
+	}
 	
 }
 
@@ -66,6 +69,9 @@ object hechizoBasico{
 	}
 	method poder() {
 		return poder
+	}
+	method unidadesDeLucha(nivelHechiceria){
+		return self.poder()
 	}
 	
 }
