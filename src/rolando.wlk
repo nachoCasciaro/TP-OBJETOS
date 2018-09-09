@@ -11,7 +11,7 @@ object rolando{
 	method valorBaseLucha(){
 		return valorBaseLucha
 	}
-	method modificarValorBaseLucha(nuevoValor){
+	method valorBaseLucha(nuevoValor){
 		valorBaseLucha = nuevoValor
 	}
 	method hechizoPreferido(nuevoHechizo){
@@ -86,7 +86,7 @@ object collarDivino{
 	method unidadesDeLucha(){
 		return cantidadPerlas
 	}
-	method modificarPerlas(unaCantidadPerlas){
+	method cantidadPerlas(unaCantidadPerlas){
 		cantidadPerlas = unaCantidadPerlas
 	}
 }
