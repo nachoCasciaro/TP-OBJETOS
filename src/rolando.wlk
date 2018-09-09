@@ -36,6 +36,10 @@ object rolando{
 	method esMasLuchadorQueHechicero(){
 		return self.habilidadLucha() > self.nivelHechiceria()
 	}
+	
+	method esPoderoso(){
+		self.hechizoPreferido.esPoderoso()
+	}
 }
 
 object espectroMalefico{
