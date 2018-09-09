@@ -38,7 +38,10 @@ object rolando{
 	}
 	
 	method esPoderoso(){
-		self.hechizoPreferido.esPoderoso()
+		self.hechizoPreferido().esPoderoso()
+	}
+	method hechizoPreferido(){
+		return hechizoPreferido
 	}
 }
 
