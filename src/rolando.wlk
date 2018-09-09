@@ -5,7 +5,7 @@ object rolando{
 	var artefactos = [espadaDelDestino,collarDivino, mascaraOscura]
 	
 	method nivelHechiceria(){
-		return ( valorBaseHechiceria * hechizoPreferido.poder() ) + fuerzaOscura
+		return ( valorBaseHechiceria * hechizoPreferido.poder() ) + fuerzaOscura.valor()
 	}
 
 	method valorBaseLucha(){
