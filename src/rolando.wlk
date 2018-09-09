@@ -125,7 +125,12 @@ object armadura {
 	}
 
 	method unidadesDeLucha(nivelHechiceria, artefactos){
-		return 2 + refuerzo.unidadesDeLucha(nivelHechiceria, artefactos)	
+		if(refuerzo == null){
+			return 2
+		}
+		else{
+			return 2 + refuerzo.unidadesDeLucha(nivelHechiceria, artefactos)	
+		}
 	}
 }
 
@@ -147,7 +152,7 @@ object espejoFantastico{
 			return 0
 		}
 		else{
-			return artefactos.map( { artefacto => artefacto.unidadesDeLucha(nivelHechiceria, artefactos) } ).max()
+			return artefactos.filter({artefacto => artefacto != self}).map( { artefacto => artefacto.unidadesDeLucha(nivelHechiceria, artefactos) } ).max()
 		}
 	}
 	
