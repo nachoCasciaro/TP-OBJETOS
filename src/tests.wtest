@@ -41,18 +41,18 @@ test "con todos los artefactos la habilidad de lucha queda en 13"{
 }
 
 test "cambiar la cantidad de perlas a 3 y la habilidad de lucha queda en 11" {
-	collarDivino.modificarPerlas(3)
+	collarDivino.cantidadPerlas(3)
 	assert.equals(11,rolando.habilidadLucha())
 }
 
 test "cambiar valor base de lucha y la habilidad de lucha queda en 20" {
-	rolando.modificarValorBaseLucha(8)
+	rolando.valorBaseLucha(8)
 	assert.equals(20,rolando.habilidadLucha())
 }
 
 test "ocurre un eclipse y el valor de lucha de la mascara queda en 5"{
 	fuerzaOscura.eclipse()
-	assert.equals(5,mascaraOscura.unidadesDeLucha())
+	assert.equals(5,mascaraOscura.unidadesDeLucha(nivelHechiceria, artefactos))
 }
 
 test "eliminar la mascara de los artefactos y la habilidad de lucha queda en 9"{

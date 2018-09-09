@@ -125,7 +125,7 @@ object armadura {
 	}
 
 	method unidadesDeLucha(nivelHechiceria, artefactos){
-		return 2 + refuerzo.unidadesDeLucha(nivelHechiceria)	
+		return 2 + refuerzo.unidadesDeLucha(nivelHechiceria, artefactos)	
 	}
 }
 
@@ -156,4 +156,10 @@ object espejoFantastico{
 	}
 }
 
+object libroHechizos{
+	var hechizos = []
+	method poder(){
+		hechizos.sum( hechizo => hechizo.esPoderoso())
+	}
+}
 
