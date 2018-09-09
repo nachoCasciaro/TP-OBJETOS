@@ -43,6 +43,9 @@ object rolando{
 	method hechizoPreferido(){
 		return hechizoPreferido
 	}
+	method estaCargado(){
+		return self.artefactos().size() >= 5
+	}
 	
 }
 
