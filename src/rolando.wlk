@@ -19,7 +19,7 @@ object rolando{
 	}
 
 	method habilidadLucha(){
-		return self.valorBaseLucha() + self.artefactos().sum({artefacto => artefacto.unidadesDeLucha( self.nivelHechiceria())})
+		return self.valorBaseLucha() + self.artefactos().sum({artefacto => artefacto.unidadesDeLucha( self.nivelHechiceria(), self.artefactos() )})
 	}
 	method artefactos(){
 		return artefactos
@@ -60,7 +60,7 @@ object espectroMalefico{
 	method poder() {
 		return nombre.size()
 	}
-	method unidadesDeLucha(nivelHechiceria){
+	method unidadesDeLucha(nivelHechiceria, artefactos){
 		return self.poder()
 	}
 	
@@ -74,26 +74,26 @@ object hechizoBasico{
 	method poder() {
 		return poder
 	}
-	method unidadesDeLucha(nivelHechiceria){
+	method unidadesDeLucha(nivelHechiceria, artefactos){
 		return self.poder()
 	}
 	
 }
 
 object espadaDelDestino{
-	method unidadesDeLucha(){
+	method unidadesDeLucha(nivelHechiceria, artefactos){
 		return 3
 	}
 }
 object mascaraOscura{
-	method unidadesDeLucha(){
+	method unidadesDeLucha(nivelHechiceria, artefactos){
 		return 4.max(fuerzaOscura.valor()/2)
 	}
 }
 
 object collarDivino{
 	var cantidadPerlas = 5
-	method unidadesDeLucha(){
+	method unidadesDeLucha(nivelHechiceria, artefactos){
 		return cantidadPerlas
 	}
 	method cantidadPerlas(unaCantidadPerlas){
@@ -124,21 +124,36 @@ object armadura {
 	refuerzo = unRefuerzo
 	}
 
-
-	method unidadesDeLucha(nivelHechiceria){
+	method unidadesDeLucha(nivelHechiceria, artefactos){
 		return 2 + refuerzo.unidadesDeLucha(nivelHechiceria)	
 	}
 }
 
 object cotaDeMalla{
-	method unidadesDeLucha(nivelHechiceria){
+	method unidadesDeLucha(nivelHechiceria, artefactos){
 		return 1
 	}
 }
 
 object bendicion{
-	method unidadesDeLucha(nivelHechiceria){
+	method unidadesDeLucha(nivelHechiceria, artefactos){
 		return nivelHechiceria
 	}
 }
+
+object espejoFantastico{
+	method unidadesDeLucha(nivelHechiceria, artefactos){
+		if(self.esElUnico(artefactos)){
+			return 0
+		}
+		else{
+			return artefactos.map( { artefacto => artefacto.unidadesDeLucha(nivelHechiceria, artefactos) } ).max()
+		}
+	}
+	
+	method esElUnico(artefactos){
+		return artefactos.filter({artefacto => artefacto != self}).isEmpty()
+	}
+}
+
 
