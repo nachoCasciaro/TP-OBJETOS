@@ -15,7 +15,7 @@ test "cambiar el hechizo preferido y el nivel de hechiceria queda en 35"{
 }
 
 test "ocurre un eclipse y el nivel de hechiceria queda en 61" {
-	rolando.eclipse()
+	fuerzaOscura.eclipse()
 	assert.that(rolando.nivelHechiceria() == 61)
 }
 
@@ -51,7 +51,7 @@ test "cambiar valor base de lucha y la habilidad de lucha queda en 20" {
 }
 
 test "ocurre un eclipse y el valor de lucha de la mascara queda en 5"{
-	rolando.eclipse()
+	fuerzaOscura.eclipse()
 	assert.equals(5,mascaraOscura.unidadesDeLucha())
 }
 
