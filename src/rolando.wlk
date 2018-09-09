@@ -159,7 +159,7 @@ object espejoFantastico{
 object libroHechizos{
 	var hechizos = []
 	method poder(){
-		hechizos.sum( hechizo => hechizo.esPoderoso())
+		hechizos.sum({ hechizo => hechizo.esPoderoso() })
 	}
 }
 
