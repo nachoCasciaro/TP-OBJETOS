@@ -152,7 +152,7 @@ object espejoFantastico{
 			return 0
 		}
 		else{
-			return artefactos.filter({artefacto => artefacto != self}).map( { artefacto => artefacto.unidadesDeLucha(nivelHechiceria, artefactos) } ).max()
+			return artefactos.filter({artefacto => artefacto != self}).max({artefacto =>artefacto.unidadesDeLucha(nivelHechiceria, artefactos) })
 		}
 	}
 	
