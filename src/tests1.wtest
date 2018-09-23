@@ -1,5 +1,7 @@
 import rolando.*
 
+describe "Pruebas tp 1 rolando" {
+
 test "el nivel de hechiceria de rolando es de 56" {
 	assert.that(rolando.nivelHechiceria() == 56)
 }
@@ -112,4 +114,5 @@ test "se reemplaza el hechizo preferido por un libro de hechizos que tiene el es
 		libroHechizos.agregarHechizo(hechizoBasico)
 		assert.equals(56,rolando.nivelHechiceria())
 		}
+
 }
