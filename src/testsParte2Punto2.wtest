@@ -1,0 +1,24 @@
+import entrega2.*
+
+describe "Pruebas tp 2 punto 1 " {
+
+	const rolando
+	const espadaDelDestino
+	const mascaraOscura
+
+	fixture {
+		rolando = new Personaje(hechizoPreferido = espectroMalefico)
+		espadaDelDestino = new Arma()
+		mascaraOscura = new Mascara(indiceDeOscuridad = 1)
+		rolando.agregarArtefacto(espadaDelDestino)
+		rolando.agregarArtefacto(mascaraOscura)
+		rolando.agregarArtefacto(collarDivino)
+	}
+
+	test "eliminar todos los artefactos y el nivel de hechiceria queda en 1" {
+		rolando.artefactos().clear()
+		assert.that(rolando.habilidadLucha() == 1)
+	}
+
+}
+

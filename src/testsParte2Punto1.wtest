@@ -1,7 +1,7 @@
 import entrega2.*
 
-describe "Pruebas tp 2 rolando" {
-
+describe "Pruebas tp 2 punto 1 " {
+	
 	const rolando
 	const espectroMalefico
 
@@ -41,6 +41,7 @@ describe "Pruebas tp 2 rolando" {
 	test "ver que el hechizo basico no es poderoso" {
 		assert.that(!hechizoBasico.esPoderoso())
 	}
+	
 
 }
 
