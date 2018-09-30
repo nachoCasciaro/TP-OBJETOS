@@ -5,19 +5,56 @@ describe "Pruebas tp 2 punto 1 " {
 	const rolando
 	const espadaDelDestino
 	const mascaraOscura
-
+	const espectroMalefico
+	const mascaraNoOscura
+	
 	fixture {
+		espectroMalefico = new Logo(nombre = "espectro Malefico", multiplo = 1)
 		rolando = new Personaje(hechizoPreferido = espectroMalefico)
 		espadaDelDestino = new Arma()
 		mascaraOscura = new Mascara(indiceDeOscuridad = 1)
-		rolando.agregarArtefacto(espadaDelDestino)
-		rolando.agregarArtefacto(mascaraOscura)
-		rolando.agregarArtefacto(collarDivino)
+		rolando.agregarUnArtefacto(espadaDelDestino)
+		rolando.agregarUnArtefacto(mascaraOscura)
+		rolando.agregarUnArtefacto(collarDivino)
+		mascaraNoOscura = new Mascara(indiceDeOscuridad = 0)
 	}
 
 	test "eliminar todos los artefactos y el nivel de hechiceria queda en 1" {
 		rolando.artefactos().clear()
 		assert.that(rolando.habilidadLucha() == 1)
+	}
+
+	test "con todos los artefactos la habilidad de lucha queda en 13" {
+		assert.equals(13, rolando.habilidadLucha())
+	}
+	
+	test "cambiar la cantidad de perlas a 3 y la habilidad de lucha queda en 11" {
+		collarDivino.cantidadPerlas(3)
+		assert.equals(11, rolando.habilidadLucha())
+	}
+	
+	test "cambiar valor base de lucha y la habilidad de lucha queda en 20" {
+		rolando.valorBaseLucha(8)
+		assert.equals(20, rolando.habilidadLucha())
+	}
+	
+	test "ocurre un eclipse y el valor de lucha de la mascara queda en 5" {
+		fuerzaOscura.eclipse()
+		assert.equals(5, mascaraOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
+	
+	test "eliminar la mascara de los artefactos y la habilidad de lucha queda en 9" {
+		rolando.eliminarUnArtefacto(mascaraOscura)
+		assert.equals(9, rolando.habilidadLucha())
+	}
+	
+	test "aparece una mascara no oscura y el valor de lucha de la mascara queda en 4"{
+		assert.equals(4, mascaraNoOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
+	
+	test "aparece una mascara no oscura con valor minimo en 2 y el valor de lucha de la mascara queda en 4"{
+		mascaraNoOscura.valorMinimoPoder(2)
+		assert.equals(2, mascaraNoOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
 	}
 
 }

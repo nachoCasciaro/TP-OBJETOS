@@ -129,7 +129,7 @@ class Arma {
 
 class Mascara {
 
-	var property valorMinimoPoder = 3
+	var property valorMinimoPoder = 4
 	var property indiceDeOscuridad
 
 	constructor(unIndice) {
@@ -137,7 +137,7 @@ class Mascara {
 	}
 
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
-		return valorMinimoPoder.min(fuerzaOscura.valor() / 2 * indiceDeOscuridad)
+		return valorMinimoPoder.max( (fuerzaOscura.valor() / 2 ) * indiceDeOscuridad)
 	}
 
 }
