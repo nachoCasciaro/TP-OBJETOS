@@ -1,4 +1,4 @@
-import entrega2.*
+import Entrega2.*
 
 describe "Pruebas tp 2 punto 1 " {
 	

@@ -1,4 +1,4 @@
-import entrega2.*
+import Entrega2.*
 
 describe "Pruebas tp 2 punto 1 " {
 
@@ -49,10 +49,12 @@ describe "Pruebas tp 2 punto 1 " {
 	}
 	
 	test "aparece una mascara no oscura y el valor de lucha de la mascara queda en 4"{
+		rolando.agregarUnArtefacto(mascaraNoOscura)
 		assert.equals(4, mascaraNoOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
 	}
 	
 	test "aparece una mascara no oscura con valor minimo en 2 y el valor de lucha de la mascara queda en 4"{
+		rolando.agregarUnArtefacto(mascaraNoOscura)
 		mascaraNoOscura.valorMinimoPoder(2)
 		assert.equals(2, mascaraNoOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
 	}

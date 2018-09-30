@@ -1,4 +1,4 @@
-import entrega1.*
+import Entrega1.*
 
 describe "Pruebas tp 1 rolando" {
 

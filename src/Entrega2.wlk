@@ -80,6 +80,10 @@ class Logo {
 	method esPoderoso() {
 		return self.poder() > 15
 	}
+	
+	method unidadesDeLucha(nivelHechiceria, artefactos) {
+		return self.poder()
+	}
 
 }
 
@@ -137,7 +141,7 @@ class Mascara {
 	}
 
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
-		return valorMinimoPoder.max( (fuerzaOscura.valor() / 2 ) * indiceDeOscuridad)
+		return valorMinimoPoder.max((fuerzaOscura.valor() / 2 ) * indiceDeOscuridad)
 	}
 
 }
@@ -156,31 +160,35 @@ object collarDivino {
 
 }
 
-object armadura {
+class Armadura {
+	const property valorBase
+	var property refuerzo
 
-	var refuerzo = null
-
-	method refuerzo(unRefuerzo) {
+	constructor(unRefuerzo,unValorBase) {
 		refuerzo = unRefuerzo
+		valorBase = unValorBase
 	}
 
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		if (refuerzo == null) {
-			return 2
+			return valorBase
 		} else {
-			return 2 + refuerzo.unidadesDeLucha(nivelHechiceria, artefactos)
+			return valorBase + refuerzo.unidadesDeLucha(nivelHechiceria, artefactos)
 		}
 	}
 
 }
 
-object cotaDeMalla {
-
-	method unidadesDeLucha(nivelHechiceria, artefactos) {
-		return 1
+class CotaDeMalla{
+	const property valorInicial 
+	constructor(unValorInicial){
+		valorInicial = unValorInicial
 	}
-
+	method unidadesDeLucha(nivelHechiceria, artefactos) {
+		return valorInicial
+	}
 }
+
 
 object bendicion {
 
@@ -190,7 +198,7 @@ object bendicion {
 
 }
 
-object espejoFantastico {
+class EspejoFantastico {
 
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		if (self.esElUnico(artefactos)) {
@@ -206,7 +214,9 @@ object espejoFantastico {
 
 }
 
-object libroHechizos {
+
+
+class LibroHechizos {
 
 	var hechizos = []
 
@@ -218,6 +228,6 @@ object libroHechizos {
 		hechizos.add(nuevoHechizo)
 	}
 
-// Si el LibroDeHechizos se incluye a si mismo, al intentar obtener el poder, este no reconoce el mensaje esPoderoso()
+// FALTAN CONTESTAR LAS DOS PREGUNTAS
 }
 

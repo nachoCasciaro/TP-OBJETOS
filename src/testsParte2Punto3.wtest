@@ -1,0 +1,86 @@
+import Entrega2.*
+
+describe "Pruebas tp 2 punto 1 " {
+
+	const rolando
+	const espadaDelDestino
+	const mascaraOscura
+	const espectroMalefico
+	const armadura
+	const espejo
+	const cotaDeMalla
+	const libroDeHechizos
+	const armaduraExtra
+	const cotaDeMalla2
+
+	fixture {
+		espectroMalefico = new Logo(nombre = "espectro Malefico", multiplo = 1)
+		rolando = new Personaje(hechizoPreferido = espectroMalefico)
+		espadaDelDestino = new Arma()
+		mascaraOscura = new Mascara(indiceDeOscuridad = 1)
+		armadura = new Armadura(refuerzo = null, valorBase = 2)
+		espejo = new EspejoFantastico()
+		cotaDeMalla = new CotaDeMalla(valorInicial = 1)
+		libroDeHechizos = new LibroHechizos()
+		armaduraExtra = new Armadura(refuerzo = null, valorBase = 5)
+		cotaDeMalla2 = new CotaDeMalla(valorInicial = 6)
+		rolando.agregarUnArtefacto(espadaDelDestino)
+		rolando.agregarUnArtefacto(mascaraOscura)
+		rolando.agregarUnArtefacto(collarDivino)
+		rolando.agregarUnArtefacto(armadura)
+		rolando.agregarUnArtefacto(espejo)
+	}
+
+	test "si rolando esta cargado tiene 5 o mas artefactos" {
+		assert.that(rolando.estaCargado())
+	}
+
+	test "rolando se saca la armadura y por lo tanto rolando no esta cargado" {
+		rolando.eliminarUnArtefacto(armadura)
+		assert.that(!rolando.estaCargado())
+	}
+
+	test "la habilidad para la lucha de rolando es 20" {
+		assert.equals(20, rolando.habilidadLucha())
+	}
+
+	test "si la armadura tiene como refuerzo una bendicion entonces las unidades de lucha son 58" {
+		armadura.refuerzo(bendicion)
+		assert.equals(58, armadura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
+
+	test "si la armadura tiene como refuerzo una cota de malla entonces las unidades de lucha son 3" {
+		armadura.refuerzo(cotaDeMalla)
+		assert.equals(3, armadura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
+
+	test "si la armadura tiene como refuerzo el hechizo basico entonces las unidades de lucha son 12" {
+		armadura.refuerzo(hechizoBasico)
+		assert.equals(12, armadura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
+
+	test "si la armadura tiene como refuerzo el hechizo espectro entonces las unidades de lucha son 19" {
+		armadura.refuerzo(espectroMalefico)
+		assert.equals(19, armadura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
+
+	test "se eliminan todos los artefactos de rolando y se le agrega el espejo entonces su habilidad de lucha queda en 1" {
+		rolando.eliminarTodosLosArtefactos()
+		rolando.agregarUnArtefacto(espejo)
+		assert.equals(1, rolando.habilidadLucha())
+	}
+
+	test "se reemplaza el hechizo preferido por un libro de hechizos que tiene el espectro malefico y el hechizo basico entonces el nivel de hechiceria de rolando es 56" {
+		rolando.hechizoPreferido(libroDeHechizos)
+		libroDeHechizos.agregarHechizo(espectroMalefico)
+		libroDeHechizos.agregarHechizo(hechizoBasico)
+		assert.equals(56, rolando.nivelHechiceria())
+	}
+
+	test "se le agrega a Rolando una armadura extra, cuyo valor base es 5, con un refuerzo cota de malla que tiene un valor de lucha 6, entonces su habilidad de lucha queda en 37 "
+		armaduraExtra.refuerzo(cotaDeMalla2)
+		assert.equals(37, rolando.habilidadLucha())
+	}
+
+}
+
