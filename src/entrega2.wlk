@@ -1,15 +1,12 @@
 class Personaje {
-	var valorBaseHechiceria = 3
-}
-
-class 
-
-object rolando{
-	var valorBaseHechiceria = 3
+	const property valorBaseHechiceria = 3
 	var valorBaseLucha = 1
-	var hechizoPreferido = espectroMalefico
-	var artefactos = [espadaDelDestino,collarDivino, mascaraOscura]
+	var hechizoPreferido
+	var artefactos = []
 	
+	constructor(unHechizoPreferido){
+		hechizoPreferido = unHechizoPreferido
+	}
 	method nivelHechiceria(){
 		return ( valorBaseHechiceria * hechizoPreferido.poder() ) + fuerzaOscura.valor()
 	}
@@ -52,8 +49,23 @@ object rolando{
 	method estaCargado(){
 		return self.artefactos().size() >= 5
 	}
-	
 }
+
+class Logo {
+	var property nombre 
+	const multiplo 
+	constructor(unNombre,unMultiplo){
+		nombre = unNombre
+		multiplo = unMultiplo
+	}
+	method poder() {
+		return nombre.size() * multiplo
+	}
+	method esPoderoso() {
+		return self.poder() > 15
+	}
+}
+
 
 object espectroMalefico{
 	var nombre = "espectro malefico"

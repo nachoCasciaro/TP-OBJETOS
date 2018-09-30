@@ -2,117 +2,117 @@ import entrega1.*
 
 describe "Pruebas tp 1 rolando" {
 
-test "el nivel de hechiceria de rolando es de 56" {
-	assert.that(rolando.nivelHechiceria() == 56)
-}
+	test "el nivel de hechiceria de rolando es de 56" {
+		assert.that(rolando.nivelHechiceria() == 56)
+	}
 
-test "le cambiamos el nombre del espectro malefico y el nivel de hechiceria queda en 125" {
-	espectroMalefico.nombre("espectro superrecontramalefico muajajaja")
-	assert.that(rolando.nivelHechiceria() == 125)
-}
+	test "le cambiamos el nombre del espectro malefico y el nivel de hechiceria queda en 125" {
+		espectroMalefico.nombre("espectro superrecontramalefico muajajaja")
+		assert.that(rolando.nivelHechiceria() == 125)
+	}
 
-test "cambiar el hechizo preferido y el nivel de hechiceria queda en 35"{
-	rolando.hechizoPreferido(hechizoBasico)
-	assert.that(rolando.nivelHechiceria() == 35)
-}
+	test "cambiar el hechizo preferido y el nivel de hechiceria queda en 35" {
+		rolando.hechizoPreferido(hechizoBasico)
+		assert.that(rolando.nivelHechiceria() == 35)
+	}
 
-test "ocurre un eclipse y el nivel de hechiceria queda en 61" {
-	fuerzaOscura.eclipse()
-	assert.that(rolando.nivelHechiceria() == 61)
-}
+	test "ocurre un eclipse y el nivel de hechiceria queda en 61" {
+		fuerzaOscura.eclipse()
+		assert.that(rolando.nivelHechiceria() == 61)
+	}
 
-test "ver que el espectro malefico es poderoso"{
-	assert.that(espectroMalefico.esPoderoso())
-}
+	test "ver que el espectro malefico es poderoso" {
+		assert.that(espectroMalefico.esPoderoso())
+	}
 
-test "cambiar el nombre del espectro malefico y ver que no es poderoso" {
-	espectroMalefico.nombre("pepe")
-	assert.that(!espectroMalefico.esPoderoso())
-	
-test "ver que el hechizo basico no es poderoso"{
-	assert.that(!hechizoBasico.esPoderoso())
-}
+	test "cambiar el nombre del espectro malefico y ver que no es poderoso" {
+		espectroMalefico.nombre("pepe")
+		assert.that(!espectroMalefico.esPoderoso())
+	}
 
-test "eliminar todos los artefactos y el nivel de hechiceria queda en 1"{
-	rolando.artefactos().clear()
-	assert.that(rolando.habilidadLucha() == 1)
-}
+	test "ver que el hechizo basico no es poderoso" {
+		assert.that(!hechizoBasico.esPoderoso())
+	}
 
-test "con todos los artefactos la habilidad de lucha queda en 13"{
-	assert.equals(13,rolando.habilidadLucha())
-}
+	test "eliminar todos los artefactos y el nivel de hechiceria queda en 1" {
+		rolando.artefactos().clear()
+		assert.that(rolando.habilidadLucha() == 1)
+	}
 
-test "cambiar la cantidad de perlas a 3 y la habilidad de lucha queda en 11" {
-	collarDivino.cantidadPerlas(3)
-	assert.equals(11,rolando.habilidadLucha())
-}
+	test "con todos los artefactos la habilidad de lucha queda en 13" {
+		assert.equals(13, rolando.habilidadLucha())
+	}
 
-test "cambiar valor base de lucha y la habilidad de lucha queda en 20" {
-	rolando.valorBaseLucha(8)
-	assert.equals(20,rolando.habilidadLucha())
-}
+	test "cambiar la cantidad de perlas a 3 y la habilidad de lucha queda en 11" {
+		collarDivino.cantidadPerlas(3)
+		assert.equals(11, rolando.habilidadLucha())
+	}
 
-test "ocurre un eclipse y el valor de lucha de la mascara queda en 5"{
-	fuerzaOscura.eclipse()
-	assert.equals(5,mascaraOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos() ))
-}
+	test "cambiar valor base de lucha y la habilidad de lucha queda en 20" {
+		rolando.valorBaseLucha(8)
+		assert.equals(20, rolando.habilidadLucha())
+	}
 
-test "eliminar la mascara de los artefactos y la habilidad de lucha queda en 9"{
-	rolando.eliminarUnArtefacto(mascaraOscura)
-	assert.equals(9,rolando.habilidadLucha())
-}
+	test "ocurre un eclipse y el valor de lucha de la mascara queda en 5" {
+		fuerzaOscura.eclipse()
+		assert.equals(5, mascaraOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
 
+	test "eliminar la mascara de los artefactos y la habilidad de lucha queda en 9" {
+		rolando.eliminarUnArtefacto(mascaraOscura)
+		assert.equals(9, rolando.habilidadLucha())
+	}
 
-test "si rolando esta cargado tiene 5 o mas artefactos" {
+	test "si rolando esta cargado tiene 5 o mas artefactos" {
 		rolando.agregarUnArtefacto(armadura)
 		rolando.agregarUnArtefacto(espejoFantastico)
 		assert.that(rolando.estaCargado())
 	}
 
-
-test "rolando se saca la armadura y por lo tanto rolando no esta cargado"{
+	test "rolando se saca la armadura y por lo tanto rolando no esta cargado" {
 		rolando.agregarUnArtefacto(armadura)
 		rolando.agregarUnArtefacto(espejoFantastico)
 		rolando.eliminarUnArtefacto(armadura)
 		assert.that(!rolando.estaCargado())
-}
+	}
 
-test "la habilidad para la lucha de rolando es 20" {
+	test "la habilidad para la lucha de rolando es 20" {
 		rolando.valorBaseLucha(8)
-		assert.equals(20,rolando.habilidadLucha())
-}
+		assert.equals(20, rolando.habilidadLucha())
+	}
 
-test "si la armadura tiene como refuerzo una bendicion entonces las unidades de lucha son 58" {
-	 armadura.refuerzo(bendicion)
-	 assert.equals(58,armadura.unidadesDeLucha( rolando.nivelHechiceria(), rolando.artefactos()) )
-}
+	test "si la armadura tiene como refuerzo una bendicion entonces las unidades de lucha son 58" {
+		armadura.refuerzo(bendicion)
+		assert.equals(58, armadura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
 
-test "si la armadura tiene como refuerzo una cota de malla entonces las unidades de lucha son 3" {
-	 armadura.refuerzo(cotaDeMalla)
-	 assert.equals(3,armadura.unidadesDeLucha( rolando.nivelHechiceria(), rolando.artefactos()) )
-}
+	test "si la armadura tiene como refuerzo una cota de malla entonces las unidades de lucha son 3" {
+		armadura.refuerzo(cotaDeMalla)
+		assert.equals(3, armadura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
 
-test "si la armadura tiene como refuerzo el hechizo basico entonces las unidades de lucha son 12" {
-	 armadura.refuerzo(hechizoBasico)
-	 assert.equals(12,armadura.unidadesDeLucha( rolando.nivelHechiceria(), rolando.artefactos()) )
-}
+	test "si la armadura tiene como refuerzo el hechizo basico entonces las unidades de lucha son 12" {
+		armadura.refuerzo(hechizoBasico)
+		assert.equals(12, armadura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
 
-test "si la armadura tiene como refuerzo el hechizo espectro entonces las unidades de lucha son 19" {
-	 armadura.refuerzo(espectroMalefico)
-	 assert.equals(19,armadura.unidadesDeLucha( rolando.nivelHechiceria(), rolando.artefactos()) )
-}
+	test "si la armadura tiene como refuerzo el hechizo espectro entonces las unidades de lucha son 19" {
+		armadura.refuerzo(espectroMalefico)
+		assert.equals(19, armadura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
 
-test "se eliminan todos los artefactos de rolando y se le agrega el espejo entonces su habilidad de lucha queda en 1" {
+	test "se eliminan todos los artefactos de rolando y se le agrega el espejo entonces su habilidad de lucha queda en 1" {
 		rolando.eliminarTodosLosArtefactos()
 		rolando.agregarUnArtefacto(espejoFantastico)
-		assert.equals(1,rolando.habilidadLucha())
-}
+		assert.equals(1, rolando.habilidadLucha())
+	}
 
-test "se reemplaza el hechizo preferido por un libro de hechizos que tiene el espectro malefico y el hechizo basico entonces el nivel de hechiceria de rolando es 56" {
+	test "se reemplaza el hechizo preferido por un libro de hechizos que tiene el espectro malefico y el hechizo basico entonces el nivel de hechiceria de rolando es 56" {
 		rolando.hechizoPreferido(libroHechizos)
 		libroHechizos.agregarHechizo(espectroMalefico)
 		libroHechizos.agregarHechizo(hechizoBasico)
-		assert.equals(56,rolando.nivelHechiceria())
-		}
+		assert.equals(56, rolando.nivelHechiceria())
+	}
 
 }
+

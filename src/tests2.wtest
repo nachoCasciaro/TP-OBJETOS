@@ -1,0 +1,46 @@
+import entrega2.*
+
+describe "Pruebas tp 2 rolando" {
+
+	const rolando
+	const espectroMalefico
+
+	fixture {
+		espectroMalefico = new Logo(nombre = "espectro Malefico", multiplo = 1)
+		rolando = new Personaje(hechizoPreferido = espectroMalefico)
+	}
+
+	test "el nivel de hechiceria de rolando es de 56" {
+		assert.that(rolando.nivelHechiceria() == 56)
+	}
+
+	test "le cambiamos el nombre del espectro malefico y el nivel de hechiceria queda en 125" {
+		espectroMalefico.nombre("espectro superrecontramalefico muajajaja")
+		assert.that(rolando.nivelHechiceria() == 125)
+	}
+
+	test "cambiar el hechizo preferido y el nivel de hechiceria queda en 35" {
+		rolando.hechizoPreferido(hechizoBasico)
+		assert.that(rolando.nivelHechiceria() == 35)
+	}
+
+	test "ocurre un eclipse y el nivel de hechiceria queda en 61" {
+		fuerzaOscura.eclipse()
+		assert.that(rolando.nivelHechiceria() == 61)
+	}
+
+	test "ver que el espectro malefico es poderoso" {
+		assert.that(espectroMalefico.esPoderoso())
+	}
+
+	test "cambiar el nombre del espectro malefico y ver que no es poderoso" {
+		espectroMalefico.nombre("pepe")
+		assert.that(!espectroMalefico.esPoderoso())
+	}
+
+	test "ver que el hechizo basico no es poderoso" {
+		assert.that(!hechizoBasico.esPoderoso())
+	}
+
+}
+
