@@ -1,6 +1,6 @@
 import Entrega2.*
 
-describe "Pruebas tp 2 punto 1 " {
+describe "Pruebas tp 2 punto 2 " {
 
 	const rolando
 	const espadaDelDestino
@@ -77,7 +77,7 @@ describe "Pruebas tp 2 punto 1 " {
 		assert.equals(56, rolando.nivelHechiceria())
 	}
 
-	test "se le agrega a Rolando una armadura extra, cuyo valor base es 5, con un refuerzo cota de malla que tiene un valor de lucha 6, entonces su habilidad de lucha queda en 37 "
+	test "se le agrega a Rolando una armadura extra, cuyo valor base es 5, con un refuerzo cota de malla que tiene un valor de lucha 6, entonces su habilidad de lucha queda en 37 " {
 		armaduraExtra.refuerzo(cotaDeMalla2)
 		assert.equals(37, rolando.habilidadLucha())
 	}

@@ -1,8 +1,8 @@
 class Personaje {
 
 	const property valorBaseHechiceria = 3
-	var valorBaseLucha = 1
-	var hechizoPreferido
+	var property valorBaseLucha = 1
+	var property hechizoPreferido
 	var artefactos = []
 
 	constructor(unHechizoPreferido) {
@@ -11,18 +11,6 @@ class Personaje {
 
 	method nivelHechiceria() {
 		return ( valorBaseHechiceria * hechizoPreferido.poder() ) + fuerzaOscura.valor()
-	}
-
-	method valorBaseLucha() {
-		return valorBaseLucha
-	}
-
-	method valorBaseLucha(nuevoValor) {
-		valorBaseLucha = nuevoValor
-	}
-
-	method hechizoPreferido(nuevoHechizo) {
-		hechizoPreferido = nuevoHechizo
 	}
 
 	method habilidadLucha() {
@@ -53,10 +41,6 @@ class Personaje {
 		return self.hechizoPreferido().esPoderoso()
 	}
 
-	method hechizoPreferido() {
-		return hechizoPreferido
-	}
-
 	method estaCargado() {
 		return self.artefactos().size() >= 5
 	}
@@ -66,7 +50,7 @@ class Personaje {
 class Logo {
 
 	var property nombre
-	const multiplo
+	const property multiplo
 
 	constructor(unNombre, unMultiplo) {
 		nombre = unNombre
@@ -80,7 +64,7 @@ class Logo {
 	method esPoderoso() {
 		return self.poder() > 15
 	}
-	
+
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		return self.poder()
 	}
@@ -161,10 +145,11 @@ object collarDivino {
 }
 
 class Armadura {
+
 	const property valorBase
 	var property refuerzo
 
-	constructor(unRefuerzo,unValorBase) {
+	constructor(unRefuerzo, unValorBase) {
 		refuerzo = unRefuerzo
 		valorBase = unValorBase
 	}
@@ -179,16 +164,19 @@ class Armadura {
 
 }
 
-class CotaDeMalla{
-	const property valorInicial 
-	constructor(unValorInicial){
+class CotaDeMalla {
+
+	const valorInicial
+
+	constructor(unValorInicial) {
 		valorInicial = unValorInicial
 	}
+
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		return valorInicial
 	}
-}
 
+}
 
 object bendicion {
 
@@ -213,8 +201,6 @@ class EspejoFantastico {
 	}
 
 }
-
-
 
 class LibroHechizos {
 
