@@ -54,8 +54,15 @@ class Personaje {
 	method gastarDinero(unaCantidad) {
 		monedas -= unaCantidad
 	}
-	
-	method puedePagar()
+
+	method puedePagarUnHechizo(unHechizo) {
+		return monedas - unHechizo.precio() + self.hechizoPreferido().precio() >= 0
+	}
+
+	method puedePagarUnArtefacto(unArtefacto) {
+		return monedas - unArtefacto.precio() >= 0
+	}
+
 }
 
 class Logo {
@@ -279,15 +286,22 @@ class LibroHechizos {
 object feriaDeHechiceria {
 
 	method venderUnHechizoA(unCliente, unHechizo) {
-		if (unCliente.puedePagar(unHechizo)) {
-			unCliente.gastarDinero(unHechizo.precio() - unCliente.hechizoPreferido().precio())
+		if (unCliente.puedePagarUnHechizo(unHechizo)) {
+			unCliente.gastarDinero(unHechizo.precio(unCliente.nivelHechiceria(),unCliente.artefactos()) - unCliente.hechizoPreferido().precio(unCliente.nivelHechiceria(),unCliente.artefactos()))
 			unCliente.hechizoPreferido(unHechizo)
-		} 
-		else {
+		} else {
 			unCliente.gastarDinero(0)
 		}
 	}
-	
+
+	method venderUnArtefacto(unCliente, unArtefacto) {
+		if (unCliente.puedePagarUnArtefacto(unArtefacto)) {
+			unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(),unCliente.artefactos()))
+			unCliente.agregarUnArtefacto(unArtefacto)
+		} else {
+			unCliente.gastarDinero(0)
+		}
+	}
 
 }
 
