@@ -1,0 +1,22 @@
+import Entrega2.*
+
+describe "Pruebas tp 2 punto 1 " {
+	
+	const xenia
+	const thor
+	const loki 
+	const alacachulaCachicomula
+	fixture {
+		xenia = new Personaje(hechizoPreferido = "alacachula cachicomula")
+		thor = new Personaje(hechizoPreferido = hechizoBasico)
+		loki = new Personaje(hechizoPreferido = hechizoBasico, monedas = 5)
+		alacachulaCachicomula = new Logo(nombre = "alacachula cachicomula", multiplo = 1)
+	}
+	
+	test "el precio del hechizo alacachula cachicomula es de 22"{
+		assert.equals(22,alacachulaCachicomula.precio(xenia.nivelHechiceria(),xenia.artefactos()))
+	}
+	
+	test ""
+
+}

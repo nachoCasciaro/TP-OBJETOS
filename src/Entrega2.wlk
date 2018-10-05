@@ -4,9 +4,11 @@ class Personaje {
 	var property valorBaseLucha = 1
 	var property hechizoPreferido
 	var artefactos = []
+	var property monedas = 100
 
-	constructor(unHechizoPreferido) {
+	constructor(unHechizoPreferido, unasMonedas) {
 		hechizoPreferido = unHechizoPreferido
+		monedas = unasMonedas
 	}
 
 	method nivelHechiceria() {
@@ -45,6 +47,15 @@ class Personaje {
 		return self.artefactos().size() >= 5
 	}
 
+	method comprarUnHechizo(unHechizo) {
+		feriaDeHechiceria.venderUnHechizoA(self, unHechizo)
+	}
+
+	method gastarDinero(unaCantidad) {
+		monedas -= unaCantidad
+	}
+	
+	method puedePagar()
 }
 
 class Logo {
@@ -69,6 +80,14 @@ class Logo {
 		return self.poder()
 	}
 
+	method precio(nivelHechiceria, artefactos) {
+		return self.poder()
+	}
+
+	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
+		return unaArmadura.valorBase() + self.precio(nivelHechiceria, artefactos)
+	}
+
 }
 
 object hechizoBasico {
@@ -85,6 +104,14 @@ object hechizoBasico {
 
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		return self.poder()
+	}
+
+	method precio(nivelHechiceria, artefactos) {
+		return 10
+	}
+
+	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
+		return unaArmadura.valorBase() + self.precio(nivelHechiceria, artefactos)
 	}
 
 }
@@ -111,6 +138,10 @@ class Arma {
 
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		return 3
+	}
+
+	method precio(nivelHechiceria, artefactos) {
+		return 5 * self.unidadesDeLucha(nivelHechiceria, artefactos)
 	}
 
 }
@@ -142,6 +173,10 @@ object collarDivino {
 		cantidadPerlas = unaCantidadPerlas
 	}
 
+	method precio(nivelHechiceria, artefactos) {
+		return 2 * cantidadPerlas
+	}
+
 }
 
 class Armadura {
@@ -155,11 +190,11 @@ class Armadura {
 	}
 
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
-		if (refuerzo == null) {
-			return valorBase
-		} else {
-			return valorBase + refuerzo.unidadesDeLucha(nivelHechiceria, artefactos)
-		}
+		return valorBase + refuerzo.unidadesDeLucha(nivelHechiceria, artefactos)
+	}
+
+	method precio(nivelHechiceria, artefactos, unaArmadura) {
+		return refuerzo.precioSegun(nivelHechiceria, artefactos, self)
 	}
 
 }
@@ -176,12 +211,28 @@ class CotaDeMalla {
 		return valorInicial
 	}
 
+	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
+		return self.unidadesDeLucha(nivelHechiceria, artefactos) / 2
+	}
+
 }
 
 object bendicion {
 
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		return nivelHechiceria
+	}
+
+	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
+		return unaArmadura.valorBase()
+	}
+
+}
+
+object sinRefuerzo {
+
+	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
+		return 2
 	}
 
 }
@@ -200,6 +251,10 @@ class EspejoFantastico {
 		return artefactos.filter({ artefacto => artefacto != self }).isEmpty()
 	}
 
+	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
+		return 90
+	}
+
 }
 
 class LibroHechizos {
@@ -214,6 +269,25 @@ class LibroHechizos {
 		hechizos.add(nuevoHechizo)
 	}
 
+	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
+		return hechizos.size() * 10 + hechizos.sum({ hechizo => hechizo.poder() })
+	}
+
 // FALTAN CONTESTAR LAS DOS PREGUNTAS
+}
+
+object feriaDeHechiceria {
+
+	method venderUnHechizoA(unCliente, unHechizo) {
+		if (unCliente.puedePagar(unHechizo)) {
+			unCliente.gastarDinero(unHechizo.precio() - unCliente.hechizoPreferido().precio())
+			unCliente.hechizoPreferido(unHechizo)
+		} 
+		else {
+			unCliente.gastarDinero(0)
+		}
+	}
+	
+
 }
 
