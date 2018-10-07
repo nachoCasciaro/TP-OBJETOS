@@ -18,11 +18,11 @@ describe "Pruebas tp 2 punto 2 " {
 		rolando = new Personaje(hechizoPreferido = espectroMalefico)
 		espadaDelDestino = new Arma()
 		mascaraOscura = new Mascara(indiceDeOscuridad = 1)
-		armadura = new Armadura(refuerzo = null, valorBase = 2)
+		armadura = new Armadura(refuerzo = sinRefuerzo, valorBase = 2)
 		espejo = new EspejoFantastico()
 		cotaDeMalla = new CotaDeMalla(valorInicial = 1)
 		libroDeHechizos = new LibroHechizos()
-		armaduraExtra = new Armadura(refuerzo = null, valorBase = 5)
+		armaduraExtra = new Armadura(refuerzo = sinRefuerzo, valorBase = 5)
 		cotaDeMalla2 = new CotaDeMalla(valorInicial = 6)
 		rolando.agregarUnArtefacto(espadaDelDestino)
 		rolando.agregarUnArtefacto(mascaraOscura)
@@ -41,6 +41,7 @@ describe "Pruebas tp 2 punto 2 " {
 	}
 
 	test "la habilidad para la lucha de rolando es 20" {
+	
 		assert.equals(20, rolando.habilidadLucha())
 	}
 

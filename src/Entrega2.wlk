@@ -168,23 +168,16 @@ class Mascara {
 
 }
 
-object collarDivino {
-
+object collarDivino{
 	var cantidadPerlas = 5
-
-	method unidadesDeLucha(nivelHechiceria, artefactos) {
+	method unidadesDeLucha(nivelHechiceria, artefactos){
 		return cantidadPerlas
 	}
-
-	method cantidadPerlas(unaCantidadPerlas) {
+	method cantidadPerlas(unaCantidadPerlas){
 		cantidadPerlas = unaCantidadPerlas
 	}
-
-	method precio(nivelHechiceria, artefactos) {
-		return 2 * cantidadPerlas
-	}
-
 }
+
 
 class Armadura {
 
@@ -237,6 +230,9 @@ object bendicion {
 }
 
 object sinRefuerzo {
+	method unidadesDeLucha(nivelHechiceria, artefactos) {
+		return 0
+	}
 
 	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
 		return 2
