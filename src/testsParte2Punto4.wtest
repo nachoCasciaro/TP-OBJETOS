@@ -16,7 +16,7 @@ describe "Pruebas tp 2 punto 1 " {
 	const libro
 	fixture {
 		alacachulaCachicomula = new Logo(nombre = "alacachula cachicomula", multiplo = 1)
-		xenia = new Personaje(hechizoPreferido = "alacachula cachicomula")
+		xenia = new Personaje(hechizoPreferido = alacachulaCachicomula)
 		thor = new Personaje(hechizoPreferido = hechizoBasico)
 		loki = new Personaje(hechizoPreferido = hechizoBasico, monedas = 5)
 		espada = new Arma()
@@ -65,7 +65,7 @@ describe "Pruebas tp 2 punto 1 " {
 		xenia.comprarUnArtefacto(collarDivino)
 		xenia.comprarUnArtefacto(armadura1)
 		xenia.comprarUnArtefacto(armadura2)
-		assert.equals(4,xenia.artefactos())
+		assert.equals(4,xenia.artefactos().size())
 	}
 	
 	test "thor compra una armadura con bendicion y otra con el alacachula, le quedan 74 monedas"{

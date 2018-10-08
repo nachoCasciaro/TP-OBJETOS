@@ -1,6 +1,6 @@
 import Entrega2.*
 
-describe "Pruebas tp 2 punto 2 " {
+describe "Pruebas tp 2 punto 3 " {
 
 	const rolando
 	const espadaDelDestino
@@ -21,7 +21,7 @@ describe "Pruebas tp 2 punto 2 " {
 		armadura = new Armadura(refuerzo = sinRefuerzo, valorBase = 2)
 		espejo = new EspejoFantastico()
 		cotaDeMalla = new CotaDeMalla(valorInicial = 1)
-		libroDeHechizos = new LibroHechizos()
+		libroDeHechizos = new LibroHechizos(hechizos = [])
 		armaduraExtra = new Armadura(refuerzo = sinRefuerzo, valorBase = 5)
 		cotaDeMalla2 = new CotaDeMalla(valorInicial = 6)
 		rolando.agregarUnArtefacto(espadaDelDestino)

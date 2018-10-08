@@ -60,7 +60,7 @@ class Personaje {
 	}
 
 	method puedePagarUnHechizo(unHechizo) {
-		return monedas - unHechizo.precio(self.nivelHechiceria(),self.artefactos()) + hechizoPreferido.precio(self.nivelHechiceria(),self.artefactos()) >= 0
+		return monedas - unHechizo.precio(self.nivelHechiceria(),self.artefactos()) + (hechizoPreferido.precio(self.nivelHechiceria(),self.artefactos()) / 2) >= 0
 	}
 
 	method puedePagarUnArtefacto(unArtefacto) {
@@ -284,7 +284,7 @@ class LibroHechizos {
 	}
 
 	method precio(nivelHechiceria, artefactos) {
-		return hechizos.size() * 10 + hechizos.sum({ hechizo => hechizo.esPoderoso().poder() })
+		return hechizos.size() * 10 + hechizos.filter({hechizo => hechizo.esPoderoso()}).sum({ hechizo => hechizo.poder() })
 	}
 
 // FALTAN CONTESTAR LAS DOS PREGUNTAS
@@ -294,7 +294,7 @@ object feriaDeHechiceria {
 
 	method venderUnHechizoA(unCliente, unHechizo) {
 		if (unCliente.puedePagarUnHechizo(unHechizo)) {
-			unCliente.gastarDinero(unHechizo.precio(unCliente.nivelHechiceria(),unCliente.artefactos()) - unCliente.hechizoPreferido().precio(unCliente.nivelHechiceria(),unCliente.artefactos()))
+			unCliente.gastarDinero(unHechizo.precio(unCliente.nivelHechiceria(),unCliente.artefactos()) - (unCliente.hechizoPreferido().precio(unCliente.nivelHechiceria(),unCliente.artefactos()) / 2))
 			unCliente.hechizoPreferido(unHechizo)
 		} else {
 			unCliente.gastarDinero(0)
