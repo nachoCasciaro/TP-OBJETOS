@@ -50,8 +50,8 @@ class Personaje {
 	method comprarUnHechizo(unHechizo) {
 		feriaDeHechiceria.venderUnHechizoA(self, unHechizo)
 	}
-	
-	method comprarUnArtefacto(unArtefacto){
+
+	method comprarUnArtefacto(unArtefacto) {
 		feriaDeHechiceria.venderUnArtefactoA(self, unArtefacto)
 	}
 
@@ -60,11 +60,11 @@ class Personaje {
 	}
 
 	method puedePagarUnHechizo(unHechizo) {
-		return monedas - unHechizo.precio(self.nivelHechiceria(),self.artefactos()) + (hechizoPreferido.precio(self.nivelHechiceria(),self.artefactos()) / 2) >= 0
+		return monedas - unHechizo.precio(self.nivelHechiceria(), self.artefactos()) + (hechizoPreferido.precio(self.nivelHechiceria(), self.artefactos()) / 2) >= 0
 	}
 
 	method puedePagarUnArtefacto(unArtefacto) {
-		return monedas - unArtefacto.precio(self.nivelHechiceria(),self.artefactos()) >= 0
+		return monedas - unArtefacto.precio(self.nivelHechiceria(), self.artefactos()) >= 0
 	}
 
 }
@@ -172,19 +172,19 @@ class Mascara {
 
 }
 
-object collarDivino{
-	var cantidadPerlas = 5
-	method unidadesDeLucha(nivelHechiceria, artefactos){
+object collarDivino {
+
+	var property cantidadPerlas = 5
+
+	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		return cantidadPerlas
 	}
-	method cantidadPerlas(unaCantidadPerlas){
-		cantidadPerlas = unaCantidadPerlas
-	}
+
 	method precio(nivelHechiceria, artefactos) {
 		return 2 * cantidadPerlas
 	}
-}
 
+}
 
 class Armadura {
 
@@ -237,6 +237,7 @@ object bendicion {
 }
 
 object sinRefuerzo {
+
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		return 0
 	}
@@ -270,8 +271,8 @@ class EspejoFantastico {
 class LibroHechizos {
 
 	var hechizos = []
-	
-	constructor(unosHechizos){
+
+	constructor(unosHechizos) {
 		hechizos = unosHechizos
 	}
 
@@ -284,7 +285,7 @@ class LibroHechizos {
 	}
 
 	method precio(nivelHechiceria, artefactos) {
-		return hechizos.size() * 10 + hechizos.filter({hechizo => hechizo.esPoderoso()}).sum({ hechizo => hechizo.poder() })
+		return hechizos.size() * 10 + hechizos.filter({ hechizo => hechizo.esPoderoso() }).sum({ hechizo => hechizo.poder() })
 	}
 
 // FALTAN CONTESTAR LAS DOS PREGUNTAS
@@ -294,7 +295,7 @@ object feriaDeHechiceria {
 
 	method venderUnHechizoA(unCliente, unHechizo) {
 		if (unCliente.puedePagarUnHechizo(unHechizo)) {
-			unCliente.gastarDinero(unHechizo.precio(unCliente.nivelHechiceria(),unCliente.artefactos()) - (unCliente.hechizoPreferido().precio(unCliente.nivelHechiceria(),unCliente.artefactos()) / 2))
+			unCliente.gastarDinero(unHechizo.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) - (unCliente.hechizoPreferido().precio(unCliente.nivelHechiceria(), unCliente.artefactos()) / 2))
 			unCliente.hechizoPreferido(unHechizo)
 		} else {
 			unCliente.gastarDinero(0)
@@ -303,7 +304,7 @@ object feriaDeHechiceria {
 
 	method venderUnArtefactoA(unCliente, unArtefacto) {
 		if (unCliente.puedePagarUnArtefacto(unArtefacto)) {
-			unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(),unCliente.artefactos()))
+			unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()))
 			unCliente.agregarUnArtefacto(unArtefacto)
 		} else {
 			unCliente.gastarDinero(0)
