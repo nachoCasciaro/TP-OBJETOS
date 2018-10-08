@@ -50,17 +50,21 @@ class Personaje {
 	method comprarUnHechizo(unHechizo) {
 		feriaDeHechiceria.venderUnHechizoA(self, unHechizo)
 	}
+	
+	method comprarUnArtefacto(unArtefacto){
+		feriaDeHechiceria.venderUnArtefactoA(self, unArtefacto)
+	}
 
 	method gastarDinero(unaCantidad) {
 		monedas -= unaCantidad
 	}
 
 	method puedePagarUnHechizo(unHechizo) {
-		return monedas - unHechizo.precio() + self.hechizoPreferido().precio() >= 0
+		return monedas - unHechizo.precio(self.nivelHechiceria(),self.artefactos()) + hechizoPreferido.precio(self.nivelHechiceria(),self.artefactos()) >= 0
 	}
 
 	method puedePagarUnArtefacto(unArtefacto) {
-		return monedas - unArtefacto.precio() >= 0
+		return monedas - unArtefacto.precio(self.nivelHechiceria(),self.artefactos()) >= 0
 	}
 
 }
@@ -176,6 +180,9 @@ object collarDivino{
 	method cantidadPerlas(unaCantidadPerlas){
 		cantidadPerlas = unaCantidadPerlas
 	}
+	method precio(nivelHechiceria, artefactos) {
+		return 2 * cantidadPerlas
+	}
 }
 
 
@@ -193,7 +200,7 @@ class Armadura {
 		return valorBase + refuerzo.unidadesDeLucha(nivelHechiceria, artefactos)
 	}
 
-	method precio(nivelHechiceria, artefactos, unaArmadura) {
+	method precio(nivelHechiceria, artefactos) {
 		return refuerzo.precioSegun(nivelHechiceria, artefactos, self)
 	}
 
@@ -254,7 +261,7 @@ class EspejoFantastico {
 		return artefactos.filter({ artefacto => artefacto != self }).isEmpty()
 	}
 
-	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
+	method precio(nivelHechiceria, artefactos) {
 		return 90
 	}
 
@@ -263,6 +270,10 @@ class EspejoFantastico {
 class LibroHechizos {
 
 	var hechizos = []
+	
+	constructor(unosHechizos){
+		hechizos = unosHechizos
+	}
 
 	method poder() {
 		return hechizos.filter({ hechizo => hechizo.esPoderoso() }).sum({ hechizo => hechizo.poder() })
@@ -272,8 +283,8 @@ class LibroHechizos {
 		hechizos.add(nuevoHechizo)
 	}
 
-	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
-		return hechizos.size() * 10 + hechizos.sum({ hechizo => hechizo.poder() })
+	method precio(nivelHechiceria, artefactos) {
+		return hechizos.size() * 10 + hechizos.sum({ hechizo => hechizo.esPoderoso().poder() })
 	}
 
 // FALTAN CONTESTAR LAS DOS PREGUNTAS
@@ -290,7 +301,7 @@ object feriaDeHechiceria {
 		}
 	}
 
-	method venderUnArtefacto(unCliente, unArtefacto) {
+	method venderUnArtefactoA(unCliente, unArtefacto) {
 		if (unCliente.puedePagarUnArtefacto(unArtefacto)) {
 			unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(),unCliente.artefactos()))
 			unCliente.agregarUnArtefacto(unArtefacto)
