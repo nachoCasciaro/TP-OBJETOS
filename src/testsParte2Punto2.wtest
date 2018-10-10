@@ -21,7 +21,7 @@ describe "Pruebas tp 2 punto 1 " {
 
 	test "eliminar todos los artefactos y el nivel de hechiceria queda en 1" {
 		rolando.artefactos().clear()
-		assert.that(rolando.habilidadLucha() == 1)
+		assert.equals(1,rolando.habilidadLucha())
 	}
 
 	test "con todos los artefactos la habilidad de lucha queda en 13" {
