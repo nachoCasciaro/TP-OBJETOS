@@ -49,10 +49,12 @@ class Personaje {
 
 	method comprarUnHechizo(unHechizo) {
 		feriaDeHechiceria.venderUnHechizoA(self, unHechizo)
+		self.hechizoPreferido(unHechizo)
 	}
 
 	method comprarUnArtefacto(unArtefacto) {
 		feriaDeHechiceria.venderUnArtefactoA(self, unArtefacto)
+		self.agregarUnArtefacto(unArtefacto)
 	}
 
 	method gastarDinero(unaCantidad) {
@@ -293,22 +295,20 @@ class LibroHechizos {
 
 object feriaDeHechiceria {
 
+
+	
 	method venderUnHechizoA(unCliente, unHechizo) {
-		if (unCliente.puedePagarUnHechizo(unHechizo)) {
+		if (!unCliente.puedePagarUnHechizo(unHechizo)) {
+			throw new Exception("No se puede gastar mas de lo que tenes")
+		} 
 			unCliente.gastarDinero(unHechizo.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) - (unCliente.hechizoPreferido().precio(unCliente.nivelHechiceria(), unCliente.artefactos()) / 2))
-			unCliente.hechizoPreferido(unHechizo)
-		} else {
-			unCliente.gastarDinero(0)
-		}
 	}
 
 	method venderUnArtefactoA(unCliente, unArtefacto) {
-		if (unCliente.puedePagarUnArtefacto(unArtefacto)) {
-			unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()))
-			unCliente.agregarUnArtefacto(unArtefacto)
-		} else {
-			unCliente.gastarDinero(0)
+		if (!unCliente.puedePagarUnArtefacto(unArtefacto)) {
+			throw new Exception("No se puede gastar mas de lo que tenes")
 		}
+		unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()))
 	}
 
 }
