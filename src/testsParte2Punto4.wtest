@@ -30,7 +30,7 @@ describe "Pruebas tp 2 punto 1 " {
 	}
 	
 	test "el precio del hechizo alacachula cachicomula es de 22"{
-		assert.equals(22,alacachulaCachicomula.precio(0,[]))
+		assert.equals(22,alacachulaCachicomula.precio(xenia.nivelHechiceria(),xenia.artefactos()))
 	}
 	
 	test "xenia canjea el hechizo por un hechizo basico y le quedan 100 monedas"{
