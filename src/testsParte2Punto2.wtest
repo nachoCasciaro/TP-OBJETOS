@@ -10,12 +10,9 @@ describe "Pruebas tp 2 punto 1 " {
 	
 	fixture {
 		espectroMalefico = new Logo(nombre = "espectro Malefico", multiplo = 1)
-		rolando = new Personaje(hechizoPreferido = espectroMalefico)
+		rolando = new Personaje(hechizoPreferido = espectroMalefico, [espadaDelDestino, mascaraOscura, collarDivino])
 		espadaDelDestino = new Arma()
 		mascaraOscura = new Mascara(indiceDeOscuridad = 1)
-		rolando.agregarUnArtefacto(espadaDelDestino)
-		rolando.agregarUnArtefacto(mascaraOscura)
-		rolando.agregarUnArtefacto(collarDivino)
 		mascaraNoOscura = new Mascara(indiceDeOscuridad = 0)
 	}
 
