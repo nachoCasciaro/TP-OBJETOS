@@ -14,16 +14,16 @@ describe "Pruebas tp 2 punto 3 " {
 	const cotaDeMalla2
 
 	fixture {
-		espectroMalefico = new Logo(nombre = "espectro Malefico", multiplo = 1)
-		rolando = new Personaje(hechizoPreferido = espectroMalefico)
+		espectroMalefico = new Logo("espectro Malefico", 1)
+		rolando = new Personaje(espectroMalefico, 100)
 		espadaDelDestino = new Arma()
-		mascaraOscura = new Mascara(indiceDeOscuridad = 1)
-		armadura = new Armadura(refuerzo = sinRefuerzo, valorBase = 2)
+		mascaraOscura = new Mascara(1)
+		armadura = new Armadura(sinRefuerzo, 2)
 		espejo = new EspejoFantastico()
-		cotaDeMalla = new CotaDeMalla(valorInicial = 1)
-		libroDeHechizos = new LibroHechizos(hechizos = [])
-		armaduraExtra = new Armadura(refuerzo = sinRefuerzo, valorBase = 5)
-		cotaDeMalla2 = new CotaDeMalla(valorInicial = 6)
+		cotaDeMalla = new CotaDeMalla(1)
+		libroDeHechizos = new LibroHechizos([])
+		armaduraExtra = new Armadura(sinRefuerzo, 5)
+		cotaDeMalla2 = new CotaDeMalla(6)
 		rolando.agregarUnArtefacto(espadaDelDestino)
 		rolando.agregarUnArtefacto(mascaraOscura)
 		rolando.agregarUnArtefacto(collarDivino)
@@ -41,7 +41,6 @@ describe "Pruebas tp 2 punto 3 " {
 	}
 
 	test "la habilidad para la lucha de rolando es 20" {
-	
 		assert.equals(20, rolando.habilidadLucha())
 	}
 

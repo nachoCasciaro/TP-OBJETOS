@@ -15,18 +15,18 @@ describe "Pruebas tp 2 punto 1 " {
 	const espejo
 	const libro
 	fixture {
-		alacachulaCachicomula = new Logo(nombre = "alacachula cachicomula", multiplo = 1)
-		xenia = new Personaje(hechizoPreferido = alacachulaCachicomula)
-		thor = new Personaje(hechizoPreferido = hechizoBasico)
-		loki = new Personaje(hechizoPreferido = hechizoBasico, monedas = 5)
+		alacachulaCachicomula = new Logo("alacachula cachicomula", 1)
+		xenia = new Personaje(alacachulaCachicomula,100)
+		thor = new Personaje(hechizoBasico,100)
+		loki = new Personaje(hechizoBasico, 5)
 		espada = new Arma()
-		cotaDeMalla = new CotaDeMalla(valorInicial= 5)
-		armadura1 = new Armadura(refuerzo = sinRefuerzo, valorBase = 2)
-		armadura2 = new Armadura(refuerzo = cotaDeMalla, valorBase = 2)
-		armadura3 = new Armadura(refuerzo = bendicion, valorBase = 2)
-		armadura4 = new Armadura(refuerzo = alacachulaCachicomula , valorBase = 2)
+		cotaDeMalla = new CotaDeMalla( 5)
+		armadura1 = new Armadura(sinRefuerzo, 2)
+		armadura2 = new Armadura(cotaDeMalla, 2)
+		armadura3 = new Armadura(bendicion, 2)
+		armadura4 = new Armadura(alacachulaCachicomula ,  2)
 		espejo = new EspejoFantastico()
-		libro = new LibroHechizos(hechizos = [hechizoBasico,alacachulaCachicomula])
+		libro = new LibroHechizos([hechizoBasico,alacachulaCachicomula])
 	}
 	
 	test "el precio del hechizo alacachula cachicomula es de 22"{
