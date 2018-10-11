@@ -6,9 +6,10 @@ class Personaje {
 	var artefactos = []
 	var property monedas = 100
 
-	constructor(unHechizoPreferido, unasMonedas) {
+	constructor(unHechizoPreferido, unasMonedas, unosArtefactos) {
 		hechizoPreferido = unHechizoPreferido
 		monedas = unasMonedas
+		artefactos = unosArtefactos
 	}
 
 	method nivelHechiceria() {
