@@ -9,11 +9,14 @@ describe "Pruebas tp 2 punto 1 " {
 	const mascaraNoOscura
 	
 	fixture {
-		espectroMalefico = new Logo(nombre = "espectro Malefico", multiplo = 1)
-		rolando = new Personaje(hechizoPreferido = espectroMalefico, [espadaDelDestino, mascaraOscura, collarDivino])
+		espectroMalefico = new Logo("espectro Malefico", 1)
+		rolando = new Personaje(espectroMalefico,100)
 		espadaDelDestino = new Arma()
-		mascaraOscura = new Mascara(indiceDeOscuridad = 1)
-		mascaraNoOscura = new Mascara(indiceDeOscuridad = 0)
+		mascaraOscura = new Mascara(1)
+		rolando.agregarUnArtefacto(espadaDelDestino)
+		rolando.agregarUnArtefacto(mascaraOscura)
+		rolando.agregarUnArtefacto(collarDivino)
+		mascaraNoOscura = new Mascara(0)
 	}
 
 	test "eliminar todos los artefactos y el nivel de hechiceria queda en 1" {

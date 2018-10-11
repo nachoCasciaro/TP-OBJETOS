@@ -7,7 +7,7 @@ describe "Pruebas tp 2 punto 1 " {
 
 	fixture {
 		espectroMalefico = new Logo("espectro Malefico", 1)
-		rolando = new Personaje(espectroMalefico,100,[])
+		rolando = new Personaje(espectroMalefico,100)
 	}
 
 	test "el nivel de hechiceria de rolando es de 56" {

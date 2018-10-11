@@ -3,13 +3,14 @@ class Personaje {
 	const property valorBaseHechiceria = 3
 	var property valorBaseLucha = 1
 	var property hechizoPreferido
-	var artefactos = []
+	var property artefactos = []
 	var property monedas 
 
-	constructor(unHechizoPreferido, unasMonedas, unosArtefactos) {
+	constructor(unHechizoPreferido, unasMonedas) {
 		hechizoPreferido = unHechizoPreferido
+		monedas = unasMonedas
 	
-		artefactos = unosArtefactos
+		
 	}
 
 	method nivelHechiceria() {
@@ -18,10 +19,6 @@ class Personaje {
 
 	method habilidadLucha() {
 		return self.valorBaseLucha() + self.artefactos().sum({ artefacto => artefacto.unidadesDeLucha(self.nivelHechiceria(), self.artefactos()) })
-	}
-
-	method artefactos() {
-		return artefactos
 	}
 
 	method eliminarTodosLosArtefactos() {
