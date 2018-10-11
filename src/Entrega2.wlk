@@ -62,7 +62,7 @@ class Personaje {
 	}
 
 	method gastarDinero(unaCantidad) {
-		monedas -= 0.max(unaCantidad)
+		monedas = monedas - 0.max(unaCantidad)
 	}
 
 	method puedePagarUnHechizo(unHechizo) {
