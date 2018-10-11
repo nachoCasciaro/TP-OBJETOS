@@ -6,8 +6,8 @@ describe "Pruebas tp 2 punto 1 " {
 	const espectroMalefico
 
 	fixture {
-		espectroMalefico = new Logo(nombre = "espectro Malefico", multiplo = 1)
-		rolando = new Personaje(hechizoPreferido = espectroMalefico)
+		espectroMalefico = new Logo("espectro Malefico", 1)
+		rolando = new Personaje(espectroMalefico,100,[])
 	}
 
 	test "el nivel de hechiceria de rolando es de 56" {

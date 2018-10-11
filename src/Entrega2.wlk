@@ -4,11 +4,11 @@ class Personaje {
 	var property valorBaseLucha = 1
 	var property hechizoPreferido
 	var artefactos = []
-	var property monedas = 100
+	var property monedas 
 
 	constructor(unHechizoPreferido, unasMonedas, unosArtefactos) {
 		hechizoPreferido = unHechizoPreferido
-		monedas = unasMonedas
+	
 		artefactos = unosArtefactos
 	}
 
