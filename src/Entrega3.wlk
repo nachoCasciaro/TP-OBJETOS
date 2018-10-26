@@ -287,7 +287,7 @@ class Armadura inherits Artefacto {
 	const property valorBase
 	var property refuerzo
 
-	constructor(unRefuerzo, unValorBase) = super(unPeso, antiguedad) {
+	constructor(unPeso, antiguedad, unRefuerzo, unValorBase) = super(unPeso, antiguedad) {
 		refuerzo = unRefuerzo
 		valorBase = unValorBase
 	}
@@ -386,7 +386,7 @@ class EspejoFantastico inherits Artefacto {
 
 class LibroHechizos {
 
-	var hechizos = []
+	var property hechizos = []
 
 	constructor(unosHechizos) {
 		hechizos = unosHechizos
