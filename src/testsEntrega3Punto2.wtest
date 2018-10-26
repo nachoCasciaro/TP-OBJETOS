@@ -1,0 +1,35 @@
+import Entrega3.*
+
+describe "Pruebas tp 3 Punto 2" {
+
+	const espadaVieja
+	const espadaNueva
+	const espadaComun
+	const mascaraOscura
+	const mascaraClara
+	const cotaDeMalla
+	var armadura2
+	var armaduraHechizoPar
+	var armaduraHechizoImpar
+	const espectroMalefico
+	var armaduraSinRefuerzo
+	const mockHnos
+	fixture {
+		espadaVieja = new Arma(7, 4000)
+		espadaNueva = new Arma(4, 0)
+		espadaComun = new Arma(5, 50)
+		mascaraOscura = new Mascara(3, 0, 1)
+		mascaraOscura.valorMinimoPoder(1)
+		mascaraClara = new Mascara(2, 0, 0)
+		mascaraClara.valorMinimoPoder(0)
+		cotaDeMalla = new CotaDeMalla(5)
+		armadura2 = new Armadura(10, 0, cotaDeMalla, 2)
+		armaduraHechizoPar = new Armadura(12, 0, elHechizoComercial, 2)
+		armaduraHechizoImpar = new Armadura(12, 0, espectroMalefico, 2)
+		espectroMalefico = new Logo("espectro Malefico", 1)
+		armaduraSinRefuerzo = new Armadura(12, 0, sinRefuerzo, 2)
+		mockHnos = new Comerciante(comercianteIndependiente,0,0)
+		
+	}
+
+}

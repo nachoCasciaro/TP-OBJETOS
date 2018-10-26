@@ -75,7 +75,7 @@ class Personaje {
 	}
 
 	method puedePagarUnArtefacto(unArtefacto, unComerciante) {
-		return monedas - unArtefacto.precio(self.nivelHechiceria(), self.artefactos()) - unComerciante.impuesto() >= 0
+		return monedas - unArtefacto.precio(self.nivelHechiceria(), self.artefactos()) - unComerciante.impuesto(unArtefacto) >= 0
 	}
 
 }
@@ -451,7 +451,7 @@ class Comerciante {
 	}
 
 	method impuesto(unArtefacto) {
-		tipo.impuestoSegun(comision, unArtefacto)
+		return tipo.impuestoSegun(self, unArtefacto)
 	}
 
 	method superaLimite() {
