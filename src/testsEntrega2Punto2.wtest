@@ -1,6 +1,6 @@
 import Entrega2.*
 
-describe "Pruebas tp 2 punto 1 " {
+describe "Pruebas tp 2 punto 2 " {
 
 	const rolando
 	const espadaDelDestino

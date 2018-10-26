@@ -1,13 +1,15 @@
 import Entrega3.*
 
-describe "Pruebas tp 2 punto 1 " {
+describe "Pruebas tp 3 punto 1 " {
 	
 	const rolando
 	const espectroMalefico
+	const furibunda
 
 	fixture {
 		espectroMalefico = new Logo("espectro Malefico", 1)
 		rolando = new Personaje(espectroMalefico,100,200)
+		furibunda = new Personaje(elHechizoComercial,100,200)
 	}
 
 	test "el nivel de hechiceria de rolando es de 56" {
@@ -42,6 +44,12 @@ describe "Pruebas tp 2 punto 1 " {
 		assert.that(!hechizoBasico.esPoderoso())
 	}
 	
-
+	test "el nivel de hechiceria de furibunda es de 29" {
+		assert.equals(29,furibunda.nivelHechiceria())
+	}
+	
+	test "ver que el hechizo comercial no es poderoso" {
+		assert.that(!elHechizoComercial.esPoderoso())
+	}
 }
 

@@ -175,12 +175,12 @@ object hechizoBasico inherits HechizoGeneral {
 }
 
 object elHechizoComercial inherits HechizoGeneral {
-
+	const nombre = "el hechizo comercial"
 	var property porcentaje = 0.2
-	var property multiplicador = 8
+	var property multiplicador = 2
 
 	override method poder() {
-		return porcentaje * multiplicador
+		return nombre.size() * porcentaje * multiplicador
 	}
 
 }
