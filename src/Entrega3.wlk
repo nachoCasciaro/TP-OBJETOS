@@ -463,16 +463,18 @@ class Comerciante {
 object comercianteIndependiente {
 
 	method impuestoSegun(comerciante, unArtefacto) {
-		return comision
+		return comerciante.comision()
 	}
 
 	method recategorizacion(comerciante) {
-		if (self.superaLimite(comerciante)) {
+		if (comerciante.superaLimite()) {
 			comerciante.duplicarComision()
 			comerciante.cambiarA(comercianteRegistrado)
 		} else {
 			comerciante.duplicarComision()
 		}
+	}
+
 }
 
 object comercianteRegistrado {
