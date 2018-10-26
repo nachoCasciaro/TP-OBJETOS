@@ -246,7 +246,7 @@ class Mascara inherits Artefacto {
 	var property valorMinimoPoder = 4
 	var property indiceDeOscuridad
 
-	constructor(unIndice) = super(unPeso, antiguedad) {
+	constructor(unPeso, antiguedad,unIndice) = super(unPeso, antiguedad) {
 		indiceDeOscuridad = unIndice
 	}
 
