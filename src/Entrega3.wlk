@@ -63,7 +63,7 @@ class Personaje {
 	}
 
 	method tieneLugar(unArtefacto) {
-		return capacidadMaxima - artefactos.sum({ artefacto => artefacto.pesoTotal(self.nivelHechiceria(), self.artefactos()) }) >= unArtefacto.pesoTotal(self.nivelHechiceria(), self.artefactos())
+		return capacidadMaxima - self.pesoTotal() >= unArtefacto.pesoTotal(self.nivelHechiceria(), self.artefactos())
 	}
 
 	method gastarDinero(unaCantidad) {
@@ -76,6 +76,10 @@ class Personaje {
 
 	method puedePagarUnArtefacto(unArtefacto, unComerciante) {
 		return monedas - unArtefacto.precio(self.nivelHechiceria(), self.artefactos()) - unComerciante.impuesto(unArtefacto) >= 0
+	}
+	
+	method pesoTotal(){
+		return artefactos.sum({ artefacto => artefacto.pesoTotal(self.nivelHechiceria(), self.artefactos()) }) 
 	}
 
 }
@@ -183,6 +187,13 @@ object elHechizoComercial inherits HechizoGeneral {
 		return nombre.size() * porcentaje * multiplicador
 	}
 
+}
+
+object sinHechizo inherits HechizoGeneral{
+	
+	override method poder(){
+		return 0
+	}
 }
 
 object fuerzaOscura {
@@ -409,6 +420,7 @@ class LibroHechizos {
 	 *      
 	 2) Al querer preguntarle el poder al libro de hechizos que posee el libro de hechizos, este se qeudaria atrapado en un bucle infinito.*/
 	}
+	
 
 }
 

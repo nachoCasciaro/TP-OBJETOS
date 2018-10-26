@@ -14,6 +14,10 @@ describe "Pruebas tp 3 Punto 2" {
 	const espectroMalefico
 	var armaduraSinRefuerzo
 	const mockHnos
+	const merlin
+	const ursula
+	const nadie
+	const collarDivino
 	fixture {
 		espadaVieja = new Arma(7, 4000)
 		espadaNueva = new Arma(4, 0)
@@ -29,7 +33,71 @@ describe "Pruebas tp 3 Punto 2" {
 		espectroMalefico = new Logo("espectro Malefico", 1)
 		armaduraSinRefuerzo = new Armadura(12, 0, sinRefuerzo, 2)
 		mockHnos = new Comerciante(comercianteIndependiente,0,0)
-		
+		merlin = new Personaje(sinHechizo,100,10)
+		ursula = new Personaje(sinHechizo,100,200)
+		ursula.agregarUnArtefacto(mascaraOscura)
+		ursula.agregarUnArtefacto(armadura2)
+		nadie = new Personaje(sinHechizo,0,0)
+		collarDivino = new CollarDivino(0,0)
 	}
-
+	
+	test "el peso de la espada vieja es 6"{
+		assert.equals(6,espadaVieja.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "el peso de la espada nueva es 4"{
+		assert.equals(4,espadaNueva.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "el peso de la espada comun es 4.95"{
+		assert.equals(4.95,espadaComun.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "el peso del collar divino es 2.5"{
+		assert.equals(2.5,collarDivino.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "el peso de la mascara oscura es 3"{
+		assert.equals(3,mascaraOscura.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "ocurre un eclipse entonces el peso de la mascara oscura 5"{
+		assert.equals(5,mascaraOscura.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "el peso de la mascara clara es 2"{
+		assert.equals(2,mascaraClara.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "el peso total de la armadura con cota de malla es 11"{
+		assert.equals(11,armadura2.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "el peso total de la armadura con hechizo par es 14"{
+		assert.equals(14,armaduraHechizoPar.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "el peso total de la armadura con hechizo impar es 13"{
+		assert.equals(13,armaduraHechizoImpar.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "el peso total de la armadura sin refuerzo es 12"{
+		assert.equals(12,armaduraSinRefuerzo.pesoTotal(nadie.nivelHechiceria(),nadie.artefactos()))
+	}
+	
+	test "merlin le compra a mock la mascara clara y la oscura,su peso total es 5"{
+		merlin.comprarUnArtefacto(mascaraOscura,mockHnos)
+		merlin.comprarUnArtefacto(mascaraClara,mockHnos)
+		assert.equals(5,merlin.pesoTotal())
+	}
+	
+	test "merlin le quiere comprar a mock la armadura con hechizo par pero no puede "{
+		assert.that(!merlin.tieneLugar(armaduraHechizoPar))
+	}
+	
+	test "usula ya tiene 14 de peso inicial y se desprende de la armadura con cota de malla entonces le queda 3 de peso"{
+		ursula.eliminarUnArtefacto(armadura2)
+		assert.equals(3,ursula.pesoTotal())
+	}
+	
 }
