@@ -274,7 +274,7 @@ class EspejoFantastico {
 
 class LibroHechizos {
 
-	var hechizos = []
+	var  hechizos = []
 
 	constructor(unosHechizos) {
 		hechizos = unosHechizos
