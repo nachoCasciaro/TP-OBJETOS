@@ -1,0 +1,30 @@
+import Entrega3.*
+
+describe "Pruebas tp 3 punto 3 " {
+	
+	const navi
+	const ashleyGraham
+	const mascaraClara
+	fixture {
+		navi = new NPC(sinHechizo,0,0,nivelFacil)
+		ashleyGraham = new NPC(sinHechizo,0,0,nivelModerado)
+		mascaraClara = new Mascara(2, 0, 0)
+		ashleyGraham.agregarUnArtefacto(mascaraClara)
+		ashleyGraham.valorBaseLucha(5)
+	}
+	
+	test "la habilidad para la lucha de navi es 1"{
+		assert.equals(1,navi.habilidadLucha())
+	}
+	
+	test "la habilidad para la lucha de ashley es 18"{
+		assert.equals(18,ashleyGraham.habilidadLucha())
+	}
+	
+	test "ashley tiene dificultad dificil entonces su habilidad para la lucha queda en 36"{
+		ashleyGraham.nivelJuego(nivelDificil)
+		assert.equals(36,ashleyGraham.habilidadLucha())
+		
+	}
+	
+}
