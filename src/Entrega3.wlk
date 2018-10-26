@@ -4,15 +4,13 @@ class Personaje {
 	var property valorBaseLucha = 1
 	var property hechizoPreferido
 	var property artefactos = []
-	var property monedas 
+	var property monedas
 	const property capacidadMaxima
 
-	constructor(unHechizoPreferido, unasMonedas,unaCapacidadMaxima) {
+	constructor(unHechizoPreferido, unasMonedas, unaCapacidadMaxima) {
 		hechizoPreferido = unHechizoPreferido
 		monedas = unasMonedas
 		capacidadMaxima = unaCapacidadMaxima
-	
-		
 	}
 
 	method nivelHechiceria() {
@@ -57,15 +55,15 @@ class Personaje {
 	}
 
 	method comprarUnArtefacto(unArtefacto, unComerciante) {
-		if(!self.tieneLugar(unArtefacto)){
+		if (!self.tieneLugar(unArtefacto)) {
 			self.error("capacidad insuficiente")
 		}
 		feriaDeHechiceria.venderUnArtefactoA(self, unArtefacto, unComerciante)
 		self.agregarUnArtefacto(unArtefacto)
 	}
 
-	method tieneLugar(unArtefacto){
-		return capacidadMaxima - artefactos.sum({artefacto => artefacto.pesoTotal(self.nivelHechiceria(),self.artefactos())})  >= unArtefacto.pesoTotal(self.nivelHechiceria(),self.artefactos())
+	method tieneLugar(unArtefacto) {
+		return capacidadMaxima - artefactos.sum({ artefacto => artefacto.pesoTotal(self.nivelHechiceria(), self.artefactos()) }) >= unArtefacto.pesoTotal(self.nivelHechiceria(), self.artefactos())
 	}
 
 	method gastarDinero(unaCantidad) {
@@ -76,49 +74,53 @@ class Personaje {
 		return monedas - unHechizo.precio(self.nivelHechiceria(), self.artefactos()) + (hechizoPreferido.precio(self.nivelHechiceria(), self.artefactos()) / 2) >= 0
 	}
 
-	method puedePagarUnArtefacto(unArtefacto,  unComerciante) {
-		return monedas - unArtefacto.precio(self.nivelHechiceria(), self.artefactos()) - unComerciante.impuesto()  >= 0
+	method puedePagarUnArtefacto(unArtefacto, unComerciante) {
+		return monedas - unArtefacto.precio(self.nivelHechiceria(), self.artefactos()) - unComerciante.impuesto() >= 0
 	}
 
 }
 
+class NPC inherits Personaje {
 
-
-class NPC	{
 	var property nivelJuego
-	constructor (unNivelJuego) = super(unHechizoPreferido, unasMonedas, unaCargaMaxima){
+
+	constructor(unHechizoPreferido, unasMonedas, unaCapacidadMaxima, unNivelJuego) = super(unHechizoPreferido, unasMonedas, unaCapacidadMaxima) {
 		nivelJuego = unNivelJuego
 	}
-	
-override method habilidadLucha(){
+
+	override method habilidadLucha() {
 		return super() * nivelJuego.valor()
-}
+	}
+
 }
 
-object nivelFacil{	
-	method valor(){
+object nivelFacil {
+
+	method valor() {
 		return 1
 	}
+
 }
 
 object nivelModerado {
 
-	method valor(){
+	method valor() {
 		return 2
 	}
+
 }
 
 object nivelDificil {
 
-	method valor(){
+	method valor() {
 		return 4
 	}
+
 }
 
+class HechizoGeneral {
 
-class HechizoGeneral
-{
-	method poder() 
+	method poder()
 
 	method esPoderoso() {
 		return self.poder() > 15
@@ -127,6 +129,7 @@ class HechizoGeneral
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		return self.poder()
 	}
+
 	method precio(nivelHechiceria, artefactos) {
 		return self.poder()
 	}
@@ -134,18 +137,14 @@ class HechizoGeneral
 	method precioSegun(nivelHechiceria, artefactos, unaArmadura) {
 		return unaArmadura.valorBase() + self.precio(nivelHechiceria, artefactos)
 	}
-	
-	method pesoSegun(){
-		if(self.Poder().even()){
+
+	method pesoSegun() {
+		if (self.poder().even()) {
 			return 2
-		}
-		else
-		{
+		} else {
 			return 1
 		}
-}
-
-
+	}
 
 }
 
@@ -165,7 +164,7 @@ class Logo inherits HechizoGeneral {
 
 }
 
-object hechizoBasico  inherits HechizoGeneral {
+object hechizoBasico inherits HechizoGeneral {
 
 	var poder = 10
 
@@ -175,13 +174,15 @@ object hechizoBasico  inherits HechizoGeneral {
 
 }
 
-object elHechizoComercial  inherits HechizoGeneral {
+object elHechizoComercial inherits HechizoGeneral {
+
 	var property porcentaje = 0.2
 	var property multiplicador = 8
-	
-	override method poder(){
+
+	override method poder() {
 		return porcentaje * multiplicador
 	}
+
 }
 
 object fuerzaOscura {
@@ -202,31 +203,34 @@ object fuerzaOscura {
 
 }
 
-class Artefacto{
-	
-const property peso
-	const property fechaCompra
-	
-constructor(unPeso,unaFecha){
-	peso=unPeso
-	fechaCompra=unaFecha
-}
-	
-method pesoTotal(nivelHechiceria, artefactos){
+class Artefacto {
+
+	const property peso
+	var property diasAntiguedad
+
+	constructor(unPeso, antiguedad) {
+		peso = unPeso
+		diasAntiguedad = antiguedad
+	}
+
+	method pesoTotal(nivelHechiceria, artefactos) {
 		return peso - self.factorCorrecion() + self.condicionParticular(nivelHechiceria, artefactos)
 	}
 
-	method factorCorrecion(fechaActual){
-		return ((fechaActual - fechaCompra) / 1000).min(1)
+	method factorCorrecion() {
+		return (diasAntiguedad / 1000).min(1)
 	}
 
 	method condicionParticular(nivelHechiceria, artefactos)
+
 }
+
 class Arma inherits Artefacto {
-	
-	override method condicionParticular(nivelHechiceria, artefactos){
+
+	override method condicionParticular(nivelHechiceria, artefactos) {
 		return 0
 	}
+
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		return 3
 	}
@@ -237,16 +241,16 @@ class Arma inherits Artefacto {
 
 }
 
-class Mascara inherits Artefacto{
+class Mascara inherits Artefacto {
 
 	var property valorMinimoPoder = 4
 	var property indiceDeOscuridad
 
-	constructor(unIndice) = super(unPeso, unaFecha) {
+	constructor(unPeso, antiguedad,unIndice) = super(unPeso, antiguedad) {
 		indiceDeOscuridad = unIndice
 	}
 
-override method condicionParticular(nivelHechiceria, artefactos){
+	override method condicionParticular(nivelHechiceria, artefactos) {
 		return (self.unidadesDeLucha(nivelHechiceria, artefactos) - 3).max(0)
 	}
 
@@ -258,14 +262,13 @@ override method condicionParticular(nivelHechiceria, artefactos){
 		return 10 * indiceDeOscuridad
 	}
 
-
 }
 
 class collarDivino inherits Artefacto {
 
 	var property cantidadPerlas = 5
-	
-	override method condicionParticular(nivelHechiceria, artefactos){
+
+	override method condicionParticular(nivelHechiceria, artefactos) {
 		return cantidadPerlas * 0.5
 	}
 
@@ -279,17 +282,17 @@ class collarDivino inherits Artefacto {
 
 }
 
-class Armadura inherits Artefacto{
+class Armadura inherits Artefacto {
 
 	const property valorBase
 	var property refuerzo
 
-	constructor(unRefuerzo, unValorBase) = super(unPeso, unaFecha){
+	constructor(unRefuerzo, unValorBase) = super(unPeso, unaFecha) {
 		refuerzo = unRefuerzo
 		valorBase = unValorBase
 	}
 
-	override method condicionParticular(nivelHechiceria, artefactos){
+	override method condicionParticular(nivelHechiceria, artefactos) {
 		return refuerzo.pesoSegun()
 	}
 
@@ -307,7 +310,7 @@ class CotaDeMalla {
 
 	const valorInicial
 
-	constructor(unValorInicial){
+	constructor(unValorInicial) {
 		valorInicial = unValorInicial
 	}
 
@@ -319,7 +322,7 @@ class CotaDeMalla {
 		return self.unidadesDeLucha(nivelHechiceria, artefactos) / 2
 	}
 
-	method pesoSegun(){
+	method pesoSegun() {
 		return 1
 	}
 
@@ -335,10 +338,9 @@ object bendicion {
 		return unaArmadura.valorBase()
 	}
 
-	method pesoSegun(){
+	method pesoSegun() {
 		return 0
 	}
-
 
 }
 
@@ -352,13 +354,13 @@ object sinRefuerzo {
 		return 2
 	}
 
-	method pesoSegun(){
+	method pesoSegun() {
 		return 0
 	}
 
 }
 
-class EspejoFantastico inherits Artefacto{
+class EspejoFantastico inherits Artefacto {
 
 	method unidadesDeLucha(nivelHechiceria, artefactos) {
 		if (self.esElUnico(artefactos)) {
@@ -375,8 +377,8 @@ class EspejoFantastico inherits Artefacto{
 	method precio(nivelHechiceria, artefactos) {
 		return 90
 	}
-	
-	override method condicionParticular(nivelHechiceria, artefactos){
+
+	override method condicionParticular(nivelHechiceria, artefactos) {
 		return 0
 	}
 
@@ -384,7 +386,7 @@ class EspejoFantastico inherits Artefacto{
 
 class LibroHechizos {
 
-	var  hechizos = []
+	var hechizos = []
 
 	constructor(unosHechizos) {
 		hechizos = unosHechizos
@@ -400,16 +402,12 @@ class LibroHechizos {
 
 	method precio(nivelHechiceria, artefactos) {
 		return hechizos.size() * 10 + hechizos.filter({ hechizo => hechizo.esPoderoso() }).sum({ hechizo => hechizo.poder() })
-
-
-
 /*1) Es conveniente que haya muchos libros de hechizos ya que si se uitlizara el metodo agregar hechizo para agregarle un hechizo al libro,
-     y este fuera unico, entonces esto estaria modificando al libro de hechizos que poseen todos los jugadores y esto no es el objetivo.
-     En cambio para el espejo no es necesario, sintacticamente, que sean muchos ya que este no se modifica pero para mantener la realidad del mundo ,
-     no seria posible que el mismo artefacto sea poseido por personas diferentes.
-     
-  2) Al querer preguntarle el poder al libro de hechizos que posee el libro de hechizos, este se qeudaria atrapado en un bucle infinito.*/
-
+ *      y este fuera unico, entonces esto estaria modificando al libro de hechizos que poseen todos los jugadores y esto no es el objetivo.
+ *      En cambio para el espejo no es necesario, sintacticamente, que sean muchos ya que este no se modifica pero para mantener la realidad del mundo ,
+ *      no seria posible que el mismo artefacto sea poseido por personas diferentes.
+ *      
+ 2) Al querer preguntarle el poder al libro de hechizos que posee el libro de hechizos, este se qeudaria atrapado en un bucle infinito.*/
 }
 
 object feriaDeHechiceria {
@@ -421,7 +419,7 @@ object feriaDeHechiceria {
 		unCliente.gastarDinero(unHechizo.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) - (unCliente.hechizoPreferido().precio(unCliente.nivelHechiceria(), unCliente.artefactos()) / 2))
 	}
 
-	method venderUnArtefactoA(unCliente, unArtefacto,  unComerciante) {
+	method venderUnArtefactoA(unCliente, unArtefacto, unComerciante) {
 		if (!unCliente.puedePagarUnArtefacto(unArtefacto, unComerciante)) {
 			throw new Exception("No se puede gastar mas de lo que tenes")
 		}
@@ -430,77 +428,75 @@ object feriaDeHechiceria {
 
 }
 
-class Comerciante{
-	
-var property tipo
-var property comision
-const property minimoImponible
-	
-constructor(unTipo, unMinimoImponible, unaComision){
+class Comerciante {
+
+	var property tipo
+	var property comision
+	const property minimoImponible
+
+	constructor(unTipo, unMinimoImponible, unaComision) {
 		tipo = unTipo
 		minimoImponible = unMinimoImponible
 		comision = unaComision
 	}
 
-	method cambiarSituacion(unTipo){
+	method cambiarSituacion(unTipo) {
 		tipo.recategorizacion(self)
 	}
-	
-	method cambiarA(unTipo){
+
+	method cambiarA(unTipo) {
 		tipo = untipo
 	}
-	
-	method impuesto(unArtefacto){
+
+	method impuesto(unArtefacto) {
 		tipo.impuestoSegun(comision, unArtefacto)
 	}
-	
-	method superaLimite(){
+
+	method superaLimite() {
 		return comision * 2 > 21
 	}
+
 }
-
-
 
 object comercianteIndependiente {
 
- method impuestoSegun(comerciante, unArtefacto){
+	method impuestoSegun(comerciante, unArtefacto) {
 		return comision
 	}
-	
-	method recategorizacion(comerciante){
-		if(self.superaLimite(comerciante))
-		{	
+
+	method recategorizacion(comerciante) {
+		if (self.superaLimite(comerciante)) {
 			comerciante.duplicarComision()
 			comerciante.cambiarA(comercianteRegistrado)
-		}
-		else
-		{
+		} else {
 			comerciante.duplicarComision()
+		}
+}
+
+object comercianteRegistrado {
+
+	method impuestoSegun(comerciante, unArtefacto) {
+		return unArtefacto.precio() * 0.21
 	}
-}
 
-object comercianteRegistrado{
-	
-method impuestoSegun(comerciante, unArtefacto){
-	return unArtefacto.precio() * 0.21
-}
-
-method recategorizacion(comerciante){
+	method recategorizacion(comerciante) {
 		comerciante.cambiarA(comercianteConGanancias)
-}
+	}
 
 }
 
 object comercianteConGanancias {
-	method impuestoSegun(comerciante, unArtefacto){
-		if(unArtefacto.precio() < comerciante.minimoImponible()){
+
+	method impuestoSegun(comerciante, unArtefacto) {
+		if (unArtefacto.precio() < comerciante.minimoImponible()) {
 			return 0
-		}
-		else{
+		} else {
 			return (unArtefacto.precio() - comerciante.minimoImponible()) * 0.35
-	 
-}
+		}
+	}
+
+	method recategorizacion(comerciante) {
+	}
+
 }
 
-	method recategorizacion(comerciante){ }
-}
