@@ -246,7 +246,7 @@ class Mascara inherits Artefacto {
 	var property valorMinimoPoder = 4
 	var property indiceDeOscuridad
 
-	constructor(unPeso, antiguedad,unIndice) = super(unPeso, antiguedad) {
+	constructor(unIndice) = super(unPeso, antiguedad) {
 		indiceDeOscuridad = unIndice
 	}
 
@@ -264,7 +264,7 @@ class Mascara inherits Artefacto {
 
 }
 
-class collarDivino inherits Artefacto {
+class CollarDivino inherits Artefacto {
 
 	var property cantidadPerlas = 5
 
@@ -287,7 +287,7 @@ class Armadura inherits Artefacto {
 	const property valorBase
 	var property refuerzo
 
-	constructor(unRefuerzo, unValorBase) = super(unPeso, unaFecha) {
+	constructor(unRefuerzo, unValorBase) = super(unPeso, antiguedad) {
 		refuerzo = unRefuerzo
 		valorBase = unValorBase
 	}
@@ -402,12 +402,14 @@ class LibroHechizos {
 
 	method precio(nivelHechiceria, artefactos) {
 		return hechizos.size() * 10 + hechizos.filter({ hechizo => hechizo.esPoderoso() }).sum({ hechizo => hechizo.poder() })
-/*1) Es conveniente que haya muchos libros de hechizos ya que si se uitlizara el metodo agregar hechizo para agregarle un hechizo al libro,
- *      y este fuera unico, entonces esto estaria modificando al libro de hechizos que poseen todos los jugadores y esto no es el objetivo.
- *      En cambio para el espejo no es necesario, sintacticamente, que sean muchos ya que este no se modifica pero para mantener la realidad del mundo ,
- *      no seria posible que el mismo artefacto sea poseido por personas diferentes.
- *      
- 2) Al querer preguntarle el poder al libro de hechizos que posee el libro de hechizos, este se qeudaria atrapado en un bucle infinito.*/
+	/*1) Es conveniente que haya muchos libros de hechizos ya que si se uitlizara el metodo agregar hechizo para agregarle un hechizo al libro,
+	 *      y este fuera unico, entonces esto estaria modificando al libro de hechizos que poseen todos los jugadores y esto no es el objetivo.
+	 *      En cambio para el espejo no es necesario, sintacticamente, que sean muchos ya que este no se modifica pero para mantener la realidad del mundo ,
+	 *      no seria posible que el mismo artefacto sea poseido por personas diferentes.
+	 *      
+	 2) Al querer preguntarle el poder al libro de hechizos que posee el libro de hechizos, este se qeudaria atrapado en un bucle infinito.*/
+	}
+
 }
 
 object feriaDeHechiceria {
@@ -445,7 +447,7 @@ class Comerciante {
 	}
 
 	method cambiarA(unTipo) {
-		tipo = untipo
+		tipo = unTipo
 	}
 
 	method impuesto(unArtefacto) {
