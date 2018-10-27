@@ -437,7 +437,7 @@ object feriaDeHechiceria {
 		if (!unCliente.puedePagarUnArtefacto(unArtefacto, unComerciante)) {
 			throw new Exception("No se puede gastar mas de lo que tenes")
 		}
-		unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria() + unComerciante.impuesto(unArtefacto), unCliente.artefactos()))
+		unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) + unComerciante.impuesto(unArtefacto))
 	}
 
 }

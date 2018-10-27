@@ -1,0 +1,28 @@
+import Entrega3.*
+
+describe "Pruebas tp 3 punto 4 " {
+	
+	const pastoriza
+	const prieto
+	const fermepin
+	const ursula
+	const mascaraOscura
+	
+	fixture {
+		pastoriza = new Comerciante(comercianteIndependiente,0,0.9)
+		prieto = new Comerciante(comercianteRegistrado,0,0)
+		fermepin = new Comerciante(comercianteConGanancias,5,0)
+		ursula = new Personaje(sinHechizo, 100, 200)
+		mascaraOscura = new Mascara(3, 0, 1)
+		}
+		
+	test "ursula comienza con 100 monedas y luego le compra la mascara oscura a pastoriza, le quedan 89,1 monedas"{
+		ursula.comprarUnArtefacto(mascaraOscura,pastoriza)
+		assert.equals(89.1,ursula.monedas())
+	}
+	
+	test "ursula comienza con 100 monedas y le compra a prieto la mascara oscura le queda 87,9 monedas"{
+		ursula.comprarUnArtefacto(mascaraOscura,prieto)
+		assert.equals(87.9,ursula.monedas())
+	}
+}
