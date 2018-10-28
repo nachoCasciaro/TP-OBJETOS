@@ -437,7 +437,7 @@ object feriaDeHechiceria {
 		if (!unCliente.puedePagarUnArtefacto(unArtefacto, unComerciante)) {
 			throw new Exception("No se puede gastar mas de lo que tenes")
 		}
-		unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) + unComerciante.impuesto(unArtefacto,self))
+		unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) + unComerciante.impuesto(unArtefacto,unCliente))
 	}
 
 }
@@ -467,7 +467,7 @@ class Comerciante {
 	}
 
 	method superaLimite() {
-		return comision * 2 > 21
+		return comision * 2 * 10 > 21
 	}
 	
 	method duplicarComision(){
@@ -479,7 +479,7 @@ class Comerciante {
 object comercianteIndependiente {
 
 	method impuestoSegun(comerciante, unArtefacto,unCliente) {
-		return comerciante.comision()
+		return  comerciante.comision() 
 	}
 
 	method recategorizacion(comerciante) {

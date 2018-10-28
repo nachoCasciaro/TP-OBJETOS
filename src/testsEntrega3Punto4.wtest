@@ -1,60 +1,60 @@
 import Entrega3.*
 
 describe "Pruebas tp 3 punto 4 " {
-	
+
 	const pastoriza
 	const prieto
 	const fermepin
 	const ursula
 	const mascaraOscura
-	
+
 	fixture {
-		pastoriza = new Comerciante(comercianteIndependiente,0,0.9)
-		prieto = new Comerciante(comercianteRegistrado,0,0)
-		fermepin = new Comerciante(comercianteConGanancias,5,0)
+		pastoriza = new Comerciante(comercianteIndependiente, 0, 0.9)
+		prieto = new Comerciante(comercianteRegistrado, 5, 0)
+		fermepin = new Comerciante(comercianteConGanancias, 5, 0)
 		ursula = new Personaje(sinHechizo, 100, 200)
 		mascaraOscura = new Mascara(3, 0, 1)
-		}
-		
-	test "ursula comienza con 100 monedas y luego le compra la mascara oscura a pastoriza, le quedan 89,1 monedas"{
-		ursula.comprarUnArtefacto(mascaraOscura,pastoriza)
-		assert.equals(89.1,ursula.monedas())
 	}
-	
-	test "ursula comienza con 100 monedas y le compra a prieto la mascara oscura le queda 87,9 monedas"{
-		ursula.comprarUnArtefacto(mascaraOscura,prieto)
-		assert.equals(87.9,ursula.monedas())
+
+	test "ursula comienza con 100 monedas y luego le compra la mascara oscura a pastoriza, le quedan 89,1 monedas" {
+		ursula.comprarUnArtefacto(mascaraOscura, pastoriza)
+		assert.equals(89.1, ursula.monedas())
 	}
-	
-	test "ursula comienza con 100 monedas y le compra a fermepin la mascara oscura le queda 88,25 monedas"{
-		ursula.comprarUnArtefacto(mascaraOscura,fermepin)
-		assert.equals(88.25,ursula.monedas())
+
+	test "ursula comienza con 100 monedas y le compra a prieto la mascara oscura le queda 87,9 monedas" {
+		ursula.comprarUnArtefacto(mascaraOscura, prieto)
+		assert.equals(87.9, ursula.monedas())
 	}
-	
-	test "recategorizar a pastoriza y ursula le compra la mascara oscura, le quedan 88,2 monedas"{
+
+	test "ursula comienza con 100 monedas y le compra a fermepin la mascara oscura le queda 88,25 monedas" {
+		ursula.comprarUnArtefacto(mascaraOscura, fermepin)
+		assert.equals(88.25, ursula.monedas())
+	}
+
+	test "recategorizar a pastoriza y ursula le compra la mascara oscura, le quedan 88,2 monedas" {
 		pastoriza.cambiarSituacion()
-		ursula.comprarUnArtefacto(mascaraOscura,pastoriza)
-		assert.equals(88.2,ursula.monedas())
+		ursula.comprarUnArtefacto(mascaraOscura, pastoriza)
+		assert.equals(88.2, ursula.monedas())
 	}
-	
-	test "recategorizar dos veces a pastoriza y ursula le compra la mascara oscura, le quedan 87.9 monedas"{
+
+	test "recategorizar dos veces a pastoriza y ursula le compra la mascara oscura, le quedan 87.9 monedas" {
 		pastoriza.cambiarSituacion()
 		pastoriza.cambiarSituacion()
-		ursula.comprarUnArtefacto(mascaraOscura,pastoriza)
-		assert.equals(87.9,ursula.monedas())
+		ursula.comprarUnArtefacto(mascaraOscura, pastoriza)
+		assert.equals(87.9, ursula.monedas())
 	}
-	
-	test "recategorizar a prieto y ursula le compra la mascara oscura, le quedan 88.25 monedas"{
+
+	test "recategorizar a prieto y ursula le compra la mascara oscura, le quedan 88.25 monedas" {
 		prieto.cambiarSituacion()
-		ursula.comprarUnArtefacto(mascaraOscura,prieto)
-		assert.equals(88.25,ursula.monedas())
+		ursula.comprarUnArtefacto(mascaraOscura, prieto)
+		assert.equals(88.25, ursula.monedas())
 	}
-	
-	test "recategorizar a fermepin y ursula le compra la mascara oscura, le quedan 88.25 monedas"{
+
+	test "recategorizar a fermepin y ursula le compra la mascara oscura, le quedan 88.25 monedas" {
 		fermepin.cambiarSituacion()
-		ursula.comprarUnArtefacto(mascaraOscura,fermepin)
-		assert.equals(88.25,ursula.monedas())
+		ursula.comprarUnArtefacto(mascaraOscura, fermepin)
+		assert.equals(88.25, ursula.monedas())
 	}
-	
-	
+
 }
+
