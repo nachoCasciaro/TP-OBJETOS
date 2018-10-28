@@ -467,7 +467,7 @@ class Comerciante {
 	}
 
 	method superaLimite() {
-		return comision * 2 * 10 > 21
+		return comision * 2 > 21
 	}
 	
 	method duplicarComision(){
@@ -479,7 +479,7 @@ class Comerciante {
 object comercianteIndependiente {
 
 	method impuestoSegun(comerciante, unArtefacto,unCliente) {
-		return  comerciante.comision() 
+		return unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) * comerciante.comision() / 100
 	}
 
 	method recategorizacion(comerciante) {

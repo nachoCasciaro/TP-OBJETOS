@@ -9,7 +9,7 @@ describe "Pruebas tp 3 punto 4 " {
 	const mascaraOscura
 
 	fixture {
-		pastoriza = new Comerciante(comercianteIndependiente, 0, 0.9)
+		pastoriza = new Comerciante(comercianteIndependiente, 0, 9)
 		prieto = new Comerciante(comercianteRegistrado, 5, 0)
 		fermepin = new Comerciante(comercianteConGanancias, 5, 0)
 		ursula = new Personaje(sinHechizo, 100, 200)
