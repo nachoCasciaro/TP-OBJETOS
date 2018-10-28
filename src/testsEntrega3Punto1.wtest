@@ -1,55 +1,26 @@
 import Entrega3.*
 
 describe "Pruebas tp 3 punto 1 " {
-	
-	const rolando
+
 	const espectroMalefico
 	const furibunda
 
 	fixture {
 		espectroMalefico = new Logo("espectro Malefico", 1)
-		rolando = new Personaje(espectroMalefico,100,200)
-		furibunda = new Personaje(elHechizoComercial,100,200)
-	}
-
-	test "el nivel de hechiceria de rolando es de 56" {
-		assert.that(rolando.nivelHechiceria() == 56)
-	}
-
-	test "le cambiamos el nombre del espectro malefico y el nivel de hechiceria queda en 125" {
-		espectroMalefico.nombre("espectro superrecontramalefico muajajaja")
-		assert.that(rolando.nivelHechiceria() == 125)
-	}
-
-	test "cambiar el hechizo preferido y el nivel de hechiceria queda en 35" {
-		rolando.hechizoPreferido(hechizoBasico)
-		assert.that(rolando.nivelHechiceria() == 35)
-	}
-
-	test "ocurre un eclipse y el nivel de hechiceria queda en 61" {
-		fuerzaOscura.eclipse()
-		assert.that(rolando.nivelHechiceria() == 61)
+		furibunda = new Personaje(elHechizoComercial, 100, 200)
 	}
 
 	test "ver que el espectro malefico es poderoso" {
 		assert.that(espectroMalefico.esPoderoso())
 	}
 
-	test "cambiar el nombre del espectro malefico y ver que no es poderoso" {
-		espectroMalefico.nombre("pepe")
-		assert.that(!espectroMalefico.esPoderoso())
+	test "el nivel de hechiceria de furibunda es de 29" {
+		assert.equals(29, furibunda.nivelHechiceria())
 	}
 
-	test "ver que el hechizo basico no es poderoso" {
-		assert.that(!hechizoBasico.esPoderoso())
-	}
-	
-	test "el nivel de hechiceria de furibunda es de 29" {
-		assert.equals(29,furibunda.nivelHechiceria())
-	}
-	
 	test "ver que el hechizo comercial no es poderoso" {
 		assert.that(!elHechizoComercial.esPoderoso())
 	}
+
 }
 
