@@ -36,8 +36,9 @@ describe "Pruebas tp 3 regresion de la entrega 2 " {
 		libro = new LibroHechizos([ hechizoBasico, alacachulaCachicomula ])
 		mockHnos = new Comerciante(comercianteIndependiente, 0, 0)
 		mascaraNoOscura = new Mascara(0, 0, 0)
-		rolando = new Personaje(espectroMalefico, 100, 200)
 		espectroMalefico = new Logo("espectro Malefico", 1)
+		rolando = new Personaje(espectroMalefico, 100, 200)
+		
 	}
 
 	test "aparece una mascara no oscura y el valor de lucha de la mascara queda en 4" {
