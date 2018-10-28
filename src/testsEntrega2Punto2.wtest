@@ -53,7 +53,7 @@ describe "Pruebas tp 2 punto 2 " {
 		assert.equals(4, mascaraNoOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
 	}
 	
-	test "aparece una mascara no oscura con valor minimo en 2 y el valor de lucha de la mascara queda en 4"{
+	test "aparece una mascara no oscura con valor minimo en 2 y el valor de lucha de la mascara queda en 2"{
 		rolando.agregarUnArtefacto(mascaraNoOscura)
 		mascaraNoOscura.valorMinimoPoder(2)
 		assert.equals(2, mascaraNoOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))

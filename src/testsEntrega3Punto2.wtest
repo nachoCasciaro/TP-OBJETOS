@@ -63,6 +63,7 @@ describe "Pruebas tp 3 Punto 2" {
 	}
 
 	test "ocurre un eclipse entonces el peso de la mascara oscura 5" {
+		fuerzaOscura.eclipse()
 		assert.equals(5, mascaraOscura.pesoTotal(nadie.nivelHechiceria(), nadie.artefactos()))
 	}
 

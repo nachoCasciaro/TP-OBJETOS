@@ -1,10 +1,10 @@
 import Entrega3.*
 
-describe "Pruebas tp 3 regresion " {
-	
+describe "Pruebas tp 3 regresion de la entrega 2 " {
+
 	const xenia
 	const thor
-	const loki 
+	const loki
 	const alacachulaCachicomula
 	const espada
 	const armadura1
@@ -16,77 +16,95 @@ describe "Pruebas tp 3 regresion " {
 	const libro
 	const mockHnos
 	const collarDivino
+	const mascaraNoOscura
+	const rolando
+	const espectroMalefico
+
 	fixture {
 		alacachulaCachicomula = new Logo("alacachula cachicomula", 1)
-		xenia = new Personaje(alacachulaCachicomula,100,200)
-		thor = new Personaje(hechizoBasico,100,200)
-		loki = new Personaje(hechizoBasico,5,200)
-		espada = new Arma(0,0)
+		xenia = new Personaje(alacachulaCachicomula, 100, 200)
+		thor = new Personaje(hechizoBasico, 100, 200)
+		loki = new Personaje(hechizoBasico, 5, 200)
+		espada = new Arma(0, 0)
 		cotaDeMalla = new CotaDeMalla(5)
-		collarDivino = new CollarDivino(0,0)
-		armadura1 = new Armadura(0,0,sinRefuerzo, 2)
-		armadura2 = new Armadura(0,0,cotaDeMalla, 2)
-		armadura3 = new Armadura(0,0,bendicion, 2)
-		armadura4 = new Armadura(0,0,alacachulaCachicomula ,  2)
-		espejo = new EspejoFantastico(0,0)
-		libro = new LibroHechizos([hechizoBasico,alacachulaCachicomula])
-		mockHnos = new Comerciante(comercianteIndependiente,0,0)
+		collarDivino = new CollarDivino(0, 0)
+		armadura1 = new Armadura(0, 0, sinRefuerzo, 2)
+		armadura2 = new Armadura(0, 0, cotaDeMalla, 2)
+		armadura3 = new Armadura(0, 0, bendicion, 2)
+		armadura4 = new Armadura(0, 0, alacachulaCachicomula, 2)
+		espejo = new EspejoFantastico(0, 0)
+		libro = new LibroHechizos([ hechizoBasico, alacachulaCachicomula ])
+		mockHnos = new Comerciante(comercianteIndependiente, 0, 0)
+		mascaraNoOscura = new Mascara(0, 0, 0)
+		rolando = new Personaje(espectroMalefico, 100, 200)
+		espectroMalefico = new Logo("espectro Malefico", 1)
 	}
-	
-	test "el precio del hechizo alacachula cachicomula es de 22"{
-		assert.equals(22,alacachulaCachicomula.precio(xenia.nivelHechiceria(),xenia.artefactos()))
+
+	test "aparece una mascara no oscura y el valor de lucha de la mascara queda en 4" {
+		rolando.agregarUnArtefacto(mascaraNoOscura)
+		assert.equals(4, mascaraNoOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
 	}
-	
-	test "xenia canjea el hechizo por un hechizo basico y le quedan 100 monedas"{
+
+	test "aparece una mascara no oscura con valor minimo en 2 y el valor de lucha de la mascara queda en 2" {
+		rolando.agregarUnArtefacto(mascaraNoOscura)
+		mascaraNoOscura.valorMinimoPoder(2)
+		assert.equals(2, mascaraNoOscura.unidadesDeLucha(rolando.nivelHechiceria(), rolando.artefactos()))
+	}
+
+	test "el precio del hechizo alacachula cachicomula es de 22" {
+		assert.equals(22, alacachulaCachicomula.precio(xenia.nivelHechiceria(), xenia.artefactos()))
+	}
+
+	test "xenia canjea el hechizo por un hechizo basico y le quedan 100 monedas" {
 		xenia.comprarUnHechizo(hechizoBasico)
-		assert.equals(100,xenia.monedas())
+		assert.equals(100, xenia.monedas())
 	}
-	
-	test "thor canjea el hechizo por el hechizo de logos alacachula y le quedan 83 monedas"{
+
+	test "thor canjea el hechizo por el hechizo de logos alacachula y le quedan 83 monedas" {
 		thor.comprarUnHechizo(alacachulaCachicomula)
-		assert.equals(83,thor.monedas())
+		assert.equals(83, thor.monedas())
 	}
-	
-	test "thor canjea dos veces por el hechizo basico y le quedan 90 monedas"{
+
+	test "thor canjea dos veces por el hechizo basico y le quedan 90 monedas" {
 		thor.comprarUnHechizo(hechizoBasico)
 		thor.comprarUnHechizo(hechizoBasico)
-		assert.equals(90,thor.monedas())
+		assert.equals(90, thor.monedas())
 	}
-	
-	test "loki quiere canjear el hechizo por el alacachula pero no puede"{
+
+	test "loki quiere canjear el hechizo por el alacachula pero no puede" {
 		assert.that(!loki.puedePagarUnHechizo(alacachulaCachicomula))
 	}
-	
-	test "xenia compra a mockHnos una espada,un collar,una armadura sin refuerzo y otra armadura con malla de cota entonces le quedan 70,5 monedas "{
-		xenia.comprarUnArtefacto(espada,mockHnos)
-		xenia.comprarUnArtefacto(collarDivino,mockHnos)
-		xenia.comprarUnArtefacto(armadura1,mockHnos)
-		xenia.comprarUnArtefacto(armadura2,mockHnos)
-		assert.equals(85.5,xenia.monedas())
+
+	test "xenia compra a mockHnos una espada,un collar,una armadura sin refuerzo y otra armadura con malla de cota entonces le quedan 70,5 monedas " {
+		xenia.comprarUnArtefacto(espada, mockHnos)
+		xenia.comprarUnArtefacto(collarDivino, mockHnos)
+		xenia.comprarUnArtefacto(armadura1, mockHnos)
+		xenia.comprarUnArtefacto(armadura2, mockHnos)
+		assert.equals(85.5, xenia.monedas())
 	}
-	test "xenia compra una espada,un collar,una armadura sin refuerzo y otra armadura con malla de cota entonces tiene 4 artefactos "{
-		xenia.comprarUnArtefacto(espada,mockHnos)
-		xenia.comprarUnArtefacto(collarDivino,mockHnos)
-		xenia.comprarUnArtefacto(armadura1,mockHnos)
-		xenia.comprarUnArtefacto(armadura2,mockHnos)
-		assert.equals(4,xenia.artefactos().size())
+
+	test "xenia compra una espada,un collar,una armadura sin refuerzo y otra armadura con malla de cota entonces tiene 4 artefactos " {
+		xenia.comprarUnArtefacto(espada, mockHnos)
+		xenia.comprarUnArtefacto(collarDivino, mockHnos)
+		xenia.comprarUnArtefacto(armadura1, mockHnos)
+		xenia.comprarUnArtefacto(armadura2, mockHnos)
+		assert.equals(4, xenia.artefactos().size())
 	}
-	
-	test "thor compra una armadura con bendicion y otra con el alacachula, le quedan 74 monedas"{
-		thor.comprarUnArtefacto(armadura3,mockHnos)
-		thor.comprarUnArtefacto(armadura4,mockHnos)
-		assert.equals(74,thor.monedas())
-		
+
+	test "thor compra una armadura con bendicion y otra con el alacachula, le quedan 74 monedas" {
+		thor.comprarUnArtefacto(armadura3, mockHnos)
+		thor.comprarUnArtefacto(armadura4, mockHnos)
+		assert.equals(74, thor.monedas())
 	}
-	
-	test "loki quiere comprar el espejo pero no puede"{
-		assert.that(!loki.puedePagarUnArtefacto(espejo,mockHnos))
+
+	test "loki quiere comprar el espejo pero no puede" {
+		assert.that(!loki.puedePagarUnArtefacto(espejo, mockHnos))
 	}
-	
-	test "xenia canjea su hechizo por un libro de hechizos le quedan 69 monedas"{
+
+	test "xenia canjea su hechizo por un libro de hechizos le quedan 69 monedas" {
 		xenia.comprarUnHechizo(libro)
-		assert.equals(69,xenia.monedas())
+		assert.equals(69, xenia.monedas())
 	}
-	
-	
+
 }
+
