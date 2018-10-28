@@ -25,4 +25,36 @@ describe "Pruebas tp 3 punto 4 " {
 		ursula.comprarUnArtefacto(mascaraOscura,prieto)
 		assert.equals(87.9,ursula.monedas())
 	}
+	
+	test "ursula comienza con 100 monedas y le compra a fermepin la mascara oscura le queda 88,25 monedas"{
+		ursula.comprarUnArtefacto(mascaraOscura,fermepin)
+		assert.equals(88.25,ursula.monedas())
+	}
+	
+	test "recategorizar a pastoriza y ursula le compra la mascara oscura, le quedan 88,2 monedas"{
+		pastoriza.cambiarSituacion()
+		ursula.comprarUnArtefacto(mascaraOscura,pastoriza)
+		assert.equals(88.2,ursula.monedas())
+	}
+	
+	test "recategorizar dos veces a pastoriza y ursula le compra la mascara oscura, le quedan 87.9 monedas"{
+		pastoriza.cambiarSituacion()
+		pastoriza.cambiarSituacion()
+		ursula.comprarUnArtefacto(mascaraOscura,pastoriza)
+		assert.equals(87.9,ursula.monedas())
+	}
+	
+	test "recategorizar a prieto y ursula le compra la mascara oscura, le quedan 88.25 monedas"{
+		prieto.cambiarSituacion()
+		ursula.comprarUnArtefacto(mascaraOscura,prieto)
+		assert.equals(88.25,ursula.monedas())
+	}
+	
+	test "recategorizar a fermepin y ursula le compra la mascara oscura, le quedan 88.25 monedas"{
+		fermepin.cambiarSituacion()
+		ursula.comprarUnArtefacto(mascaraOscura,fermepin)
+		assert.equals(88.25,ursula.monedas())
+	}
+	
+	
 }

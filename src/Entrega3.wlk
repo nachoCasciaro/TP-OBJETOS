@@ -75,7 +75,7 @@ class Personaje {
 	}
 
 	method puedePagarUnArtefacto(unArtefacto, unComerciante) {
-		return monedas - unArtefacto.precio(self.nivelHechiceria(), self.artefactos()) - unComerciante.impuesto(unArtefacto) >= 0
+		return monedas - unArtefacto.precio(self.nivelHechiceria(), self.artefactos()) - unComerciante.impuesto(unArtefacto,self) >= 0
 	}
 	
 	method pesoTotal(){
@@ -437,7 +437,7 @@ object feriaDeHechiceria {
 		if (!unCliente.puedePagarUnArtefacto(unArtefacto, unComerciante)) {
 			throw new Exception("No se puede gastar mas de lo que tenes")
 		}
-		unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) + unComerciante.impuesto(unArtefacto))
+		unCliente.gastarDinero(unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) + unComerciante.impuesto(unArtefacto,self))
 	}
 
 }
@@ -454,7 +454,7 @@ class Comerciante {
 		comision = unaComision
 	}
 
-	method cambiarSituacion(unTipo) {
+	method cambiarSituacion() {
 		tipo.recategorizacion(self)
 	}
 
@@ -462,19 +462,23 @@ class Comerciante {
 		tipo = unTipo
 	}
 
-	method impuesto(unArtefacto) {
-		return tipo.impuestoSegun(self, unArtefacto)
+	method impuesto(unArtefacto,unCliente) {
+		return tipo.impuestoSegun(self, unArtefacto,unCliente)
 	}
 
 	method superaLimite() {
 		return comision * 2 > 21
+	}
+	
+	method duplicarComision(){
+		comision *= 2
 	}
 
 }
 
 object comercianteIndependiente {
 
-	method impuestoSegun(comerciante, unArtefacto) {
+	method impuestoSegun(comerciante, unArtefacto,unCliente) {
 		return comerciante.comision()
 	}
 
@@ -491,8 +495,8 @@ object comercianteIndependiente {
 
 object comercianteRegistrado {
 
-	method impuestoSegun(comerciante, unArtefacto) {
-		return unArtefacto.precio() * 0.21
+	method impuestoSegun(comerciante, unArtefacto,unCliente) {
+		return unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) * 0.21
 	}
 
 	method recategorizacion(comerciante) {
@@ -503,11 +507,11 @@ object comercianteRegistrado {
 
 object comercianteConGanancias {
 
-	method impuestoSegun(comerciante, unArtefacto) {
-		if (unArtefacto.precio() < comerciante.minimoImponible()) {
+	method impuestoSegun(comerciante, unArtefacto,unCliente) {
+		if (unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) < comerciante.minimoImponible()) {
 			return 0
 		} else {
-			return (unArtefacto.precio() - comerciante.minimoImponible()) * 0.35
+			return (unArtefacto.precio(unCliente.nivelHechiceria(), unCliente.artefactos()) - comerciante.minimoImponible()) * 0.35
 		}
 	}
 
